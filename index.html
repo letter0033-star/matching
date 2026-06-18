@@ -238,17 +238,17 @@
     ];
 
     const DEFAULT_WEIGHTS = {
-      pref1: 20, 
-      pref2: 16,  
-      pref3: 12,  
-      pref4: 8,  
-      pref5: 4,  
+      pref1: 50, 
+      pref2: 45,  
+      pref3: 40,  
+      pref4: 35,  
+      pref5: 30,  
       tenureSchool: 10,   
-      tenureHomeroom: 10, 
-      tenureDifficult: 10, 
+      tenureHomeroom: 5, 
+      tenureDifficult: 5, 
       tenureHead: 10,     
-      tenureTotal: 5,     
-      tenureEtc: 10,      
+      tenureTotal: 1,     
+      tenureEtc: 1,      
       difficultBonus: 10  
     };
 
@@ -709,7 +709,7 @@
       };
 
       const handleWeightChange = (key, delta) => {
-        const maxLimit = ['pref1', 'pref2', 'pref3', 'pref4', 'pref5'].includes(key) ? 20 : 10;
+        const maxLimit = ['pref1', 'pref2', 'pref3', 'pref4', 'pref5'].includes(key) ? 50 : 10;
         setWeights(prev => {
           const newVal = Math.min(maxLimit, Math.max(0, (prev[key] || 0) + delta));
           return { ...prev, [key]: newVal };
@@ -2700,7 +2700,7 @@
                       2. 매칭 가중치 세부 조절
                     </h3>
                     <p className="text-[11px] text-slate-500 mb-5 leading-relaxed">
-                      선호도 보너스(0~20점) 및 경력 가중치(0~10점) 범위를 직접 입력하거나 `+` `/` `-` 버튼으로 조율하십시오.
+                      선호도 보너스(0~50점) 및 경력 가중치(0~10점) 범위를 직접 입력하거나 `+` `/` `-` 버튼으로 조율하십시오.
                     </p>
 
                     <div className="space-y-3">
@@ -2718,7 +2718,7 @@
                         { label: '기타 가점 가중치', key: 'tenureEtc' },
                         { label: '곤란학년 희망 보너스', key: 'difficultBonus' }
                       ].map((item) => {
-                        const maxLimit = ['pref1', 'pref2', 'pref3', 'pref4', 'pref5'].includes(item.key) ? 20 : 10;
+                        const maxLimit = ['pref1', 'pref2', 'pref3', 'pref4', 'pref5'].includes(item.key) ? 50 : 10;
                         return (
                           <div key={item.key} className="flex items-center justify-between bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200/60 shadow-sm hover:bg-slate-100/30 transition">
                             <span className="text-xs font-bold text-slate-600">{item.label}</span>
