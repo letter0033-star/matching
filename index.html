@@ -168,14 +168,14 @@
 
     const INITIAL_TEACHERS = [
       // 30 Homeroom Teachers (no headPref, role: 'homeroom')
-      { id: 't1', name: '강민준', role: 'homeroom', gradePrefs: [6, 5, 4, 3, 2], deptPrefs: ['교무기획부', '교육과정부', '학생생활부', '연구부'], headPref: '', tenureSchool: 4, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 0, tenureTotal: 12, tenureEtc: 2 },
+      { id: 't1', name: '강민준', role: 'homeroom', gradePrefs: [6, 5, 4, 3, 2], deptPrefs: ['교무기획부', '과학부', '학생생활부', '연구부'], headPref: '', tenureSchool: 4, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 0, tenureTotal: 12, tenureEtc: 2 },
       { id: 't2', name: '이지아', role: 'homeroom', gradePrefs: [1, 2, 3, 5, 6], deptPrefs: ['학생생활부', '체육예술부', '연구부', '정보부'], headPref: '', tenureSchool: 2, tenureHomeroom: 3, tenureDifficult: 2, tenureHead: 0, tenureTotal: 5, tenureEtc: 1 },
-      { id: 't3', name: '김도윤', role: 'homeroom', gradePrefs: [5, 6, 4, 3, 2], deptPrefs: ['연구부', '교무기획부', '연구부', '교육과정부'], headPref: '', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 4, tenureHead: 0, tenureTotal: 15, tenureEtc: 3 },
-      { id: 't4', name: '박수아', role: 'homeroom', gradePrefs: [2, 3, 1, 4, 5], deptPrefs: ['교육과정부', '정보부', '학생생활부', '체육예술부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
+      { id: 't3', name: '김도윤', role: 'homeroom', gradePrefs: [5, 6, 4, 3, 2], deptPrefs: ['연구부', '교무기획부', '연구부', '과학부'], headPref: '', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 4, tenureHead: 0, tenureTotal: 15, tenureEtc: 3 },
+      { id: 't4', name: '박수아', role: 'homeroom', gradePrefs: [2, 3, 1, 4, 5], deptPrefs: ['과학부', '정보부', '학생생활부', '체육예술부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
       { id: 't5', name: '최현우', role: 'homeroom', gradePrefs: [5, 6, 3, 4, 1], deptPrefs: ['학생생활부', '교무기획부', '체육예술부', '연구부'], headPref: '', tenureSchool: 3, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 0, tenureTotal: 10, tenureEtc: 2 },
-      { id: 't6', name: '정하은', role: 'homeroom', gradePrefs: [3, 4, 2, 1, 5], deptPrefs: ['정보부', '연구부', '교육과정부', '체육예술부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
-      { id: 't7', name: '오세훈', role: 'homeroom', gradePrefs: [1, 2, 6, 5, 4], deptPrefs: ['체육예술부', '학생생활부', '정보부', '환경위생부'], headPref: '', tenureSchool: 1, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
-      { id: 't8', name: '서예진', role: 'homeroom', gradePrefs: [4, 3, 2, 5, 1], deptPrefs: ['연구부', '교육과정부', '연구부', '학생생활부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
+      { id: 't6', name: '정하은', role: 'homeroom', gradePrefs: [3, 4, 2, 1, 5], deptPrefs: ['정보부', '연구부', '과학부', '체육예술부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
+      { id: 't7', name: '오세훈', role: 'homeroom', gradePrefs: [1, 2, 6, 5, 4], deptPrefs: ['체육예술부', '학생생활부', '정보부', '과학부'], headPref: '', tenureSchool: 1, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
+      { id: 't8', name: '서예진', role: 'homeroom', gradePrefs: [4, 3, 2, 5, 1], deptPrefs: ['연구부', '과학부', '연구부', '학생생활부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
       { id: 't9', name: '신재현', role: 'homeroom', gradePrefs: [6, 5, 1, 2, 3], deptPrefs: ['연구부', '학생생활부', '교무기획부', '정보부'], headPref: '', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 3, tenureHead: 0, tenureTotal: 9, tenureEtc: 2 },
       { id: 't10', name: '권다은', role: 'homeroom', gradePrefs: [2, 1, 3, 4, 6], deptPrefs: ['정보부', '체육예술부', '연구부', '체육예술부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 7, tenureEtc: 1 },
       { id: 't11', name: '안소율', role: 'homeroom', gradePrefs: [5, 4, 3, 2, 6], deptPrefs: ['학생생활부', '체육예술부', '연구부', '교무기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
@@ -190,51 +190,57 @@
       { id: 't20', name: '변정우', role: 'homeroom', gradePrefs: [1, 6, 2, 3, 4], deptPrefs: ['체육예술부', '교무기획부', '연구부', '학생생활부'], headPref: '', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 3, tenureHead: 0, tenureTotal: 12, tenureEtc: 1 },
       { id: 't21', name: '민서하', role: 'homeroom', gradePrefs: [5, 6, 4, 3, 2], deptPrefs: ['학생생활부', '정보부', '체육예술부', '연구부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 2, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
       { id: 't22', name: '지승현', role: 'homeroom', gradePrefs: [6, 1, 5, 2, 3], deptPrefs: ['연구부', '교무기획부', '체육예술부', '정보부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
-      { id: 't23', name: '조현우', role: 'homeroom', gradePrefs: [3, 4, 5, 1, 2], deptPrefs: ['교무기획부', '교육과정부', '연구부', '학생생활부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 0, tenureTotal: 5, tenureEtc: 0 },
-      { id: 't24', name: '윤서윤', role: 'homeroom', gradePrefs: [2, 3, 4, 5, 6], deptPrefs: ['연구부', '학생생활부', '정보부', '환경위생부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 7, tenureEtc: 1 },
-      { id: 't25', name: '한재원', role: 'homeroom', gradePrefs: [4, 5, 6, 1, 2], deptPrefs: ['교육과정부', '교무기획부', '정보부', '체육예술부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
-      { id: 't26', name: '서주원', role: 'homeroom', gradePrefs: [1, 2, 3, 4, 5], deptPrefs: ['환경위생부', '연구부', '학생생활부', '교무기획부'], headPref: '', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 0, tenureTotal: 11, tenureEtc: 2 },
-      { id: 't27', name: '윤도현', role: 'homeroom', gradePrefs: [5, 6, 1, 2, 3], deptPrefs: ['정보부', '교육과정부', '체육예술부', '연구부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
-      { id: 't28', name: '임수아', role: 'homeroom', gradePrefs: [3, 4, 2, 5, 6], deptPrefs: ['교무기획부', '학생생활부', '환경위생부', '정보부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
-      { id: 't29', name: '김우빈', role: 'homeroom', gradePrefs: [6, 1, 2, 3, 4], deptPrefs: ['연구부', '교육과정부', '학생생활부', '교무기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
+      { id: 't23', name: '조현우', role: 'homeroom', gradePrefs: [3, 4, 5, 1, 2], deptPrefs: ['교무기획부', '과학부', '연구부', '학생생활부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 0, tenureTotal: 5, tenureEtc: 0 },
+      { id: 't24', name: '윤서윤', role: 'homeroom', gradePrefs: [2, 3, 4, 5, 6], deptPrefs: ['연구부', '학생생활부', '정보부', '과학부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 7, tenureEtc: 1 },
+      { id: 't25', name: '한재원', role: 'homeroom', gradePrefs: [4, 5, 6, 1, 2], deptPrefs: ['과학부', '교무기획부', '정보부', '체육예술부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
+      { id: 't26', name: '서주원', role: 'homeroom', gradePrefs: [1, 2, 3, 4, 5], deptPrefs: ['과학부', '연구부', '학생생활부', '교무기획부'], headPref: '', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 0, tenureTotal: 11, tenureEtc: 2 },
+      { id: 't27', name: '윤도현', role: 'homeroom', gradePrefs: [5, 6, 1, 2, 3], deptPrefs: ['정보부', '과학부', '체육예술부', '연구부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
+      { id: 't28', name: '임수아', role: 'homeroom', gradePrefs: [3, 4, 2, 5, 6], deptPrefs: ['교무기획부', '학생생활부', '과학부', '정보부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
+      { id: 't29', name: '김우빈', role: 'homeroom', gradePrefs: [6, 1, 2, 3, 4], deptPrefs: ['연구부', '과학부', '학생생활부', '교무기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
       { id: 't30', name: '정소윤', role: 'homeroom', gradePrefs: [2, 3, 5, 6, 1], deptPrefs: ['학생생활부', '정보부', '교무기획부', '연구부'], headPref: '', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 0, tenureTotal: 14, tenureEtc: 2 },
 
       // 6 Grade Head Teachers (role: 'homeroom_head', headPref: '학년부장')
-      { id: 't31', name: '장하준', role: 'homeroom_head', gradePrefs: [1, 2, 3, 4, 5], deptPrefs: ['학년부', '교무기획부', '교육과정부', '연구부'], headPref: '학년부장', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 10, tenureEtc: 1 },
-      { id: 't32', name: '윤지우', role: 'homeroom_head', gradePrefs: [2, 1, 3, 4, 5], deptPrefs: ['학년부', '교육과정부', '학생생활부', '연구부'], headPref: '학년부장', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 1, tenureTotal: 7, tenureEtc: 1 },
+      { id: 't31', name: '장하준', role: 'homeroom_head', gradePrefs: [1, 2, 3, 4, 5], deptPrefs: ['학년부', '교무기획부', '과학부', '연구부'], headPref: '학년부장', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 10, tenureEtc: 1 },
+      { id: 't32', name: '윤지우', role: 'homeroom_head', gradePrefs: [2, 1, 3, 4, 5], deptPrefs: ['학년부', '과학부', '학생생활부', '연구부'], headPref: '학년부장', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 1, tenureTotal: 7, tenureEtc: 1 },
       { id: 't33', name: '강태윤', role: 'homeroom_head', gradePrefs: [3, 2, 4, 5, 6], deptPrefs: ['학년부', '연구부', '정보부', '체육예술부'], headPref: '학년부장', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 3, tenureTotal: 15, tenureEtc: 3 },
       { id: 't34', name: '김채원', role: 'homeroom_head', gradePrefs: [4, 3, 5, 6, 1], deptPrefs: ['학년부', '학생생활부', '교무기획부', '연구부'], headPref: '학년부장', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 1, tenureTotal: 5, tenureEtc: 0 },
-      { id: 't35', name: '이서준', role: 'homeroom_head', gradePrefs: [5, 4, 6, 3, 2], deptPrefs: ['학년부', '정보부', '연구부', '교육과정부'], headPref: '학년부장', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 11, tenureEtc: 2 },
+      { id: 't35', name: '이서준', role: 'homeroom_head', gradePrefs: [5, 4, 6, 3, 2], deptPrefs: ['학년부', '정보부', '연구부', '과학부'], headPref: '학년부장', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 11, tenureEtc: 2 },
       { id: 't36', name: '박지아', role: 'homeroom_head', gradePrefs: [6, 5, 4, 3, 2], deptPrefs: ['학년부', '체육예술부', '학생생활부', '교무기획부'], headPref: '학년부장', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 4, tenureHead: 4, tenureTotal: 17, tenureEtc: 4 },
 
       // 2 Homeroom (Head) Teachers (role: 'homeroom_head')
-      { id: 't37', name: '임도현', role: 'homeroom_head', gradePrefs: [6, 1, 2, 3, 4], deptPrefs: ['교무기획부', '학생생활부', '연구부', '교육과정부'], headPref: '교무기획부장', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 5, tenureHead: 5, tenureTotal: 18, tenureEtc: 4 },
-      { id: 't38', name: '황민철', role: 'homeroom_head', gradePrefs: [3, 4, 5, 6, 1], deptPrefs: ['교육과정부', '교무기획부', '정보부', '체육예술부'], headPref: '교육과정부장', tenureSchool: 3, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 11, tenureEtc: 1 },
+      { id: 't37', name: '임도현', role: 'homeroom_head', gradePrefs: [6, 1, 2, 3, 4], deptPrefs: ['교무기획부', '학생생활부', '연구부', '과학부'], headPref: '교무기획부장', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 5, tenureHead: 5, tenureTotal: 18, tenureEtc: 4 },
+      { id: 't38', name: '황민철', role: 'homeroom_head', gradePrefs: [3, 4, 5, 6, 1], deptPrefs: ['과학부', '교무기획부', '정보부', '체육예술부'], headPref: '과학부장', tenureSchool: 3, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 11, tenureEtc: 1 },
 
       // 4 Specialty Head Teachers (role: 'head')
       { id: 't39', name: '최현석', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['학생생활부', '연구부', '교무기획부', '정보부'], headPref: '학생생활부장', tenureSchool: 4, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 3, tenureTotal: 12, tenureEtc: 2 },
-      { id: 't40', name: '황광희', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['연구부', '정보부', '체육예술부', '교육과정부'], headPref: '연구부장', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 2, tenureTotal: 8, tenureEtc: 1 },
-      { id: 't41', name: '이경규', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['체육예술부', '환경위생부', '학생생활부', '정보부'], headPref: '체육예술부장', tenureSchool: 5, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 4, tenureTotal: 20, tenureEtc: 3 },
-      { id: 't42', name: '김성주', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['정보부', '교무기획부', '연구부', '교육과정부'], headPref: '정보부장', tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 1, tenureTotal: 6, tenureEtc: 0 },
+      { id: 't40', name: '황광희', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['연구부', '정보부', '체육예술부', '과학부'], headPref: '연구부장', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 2, tenureTotal: 8, tenureEtc: 1 },
+      { id: 't41', name: '이경규', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['체육예술부', '과학부', '학생생활부', '정보부'], headPref: '체육예술부장', tenureSchool: 5, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 4, tenureTotal: 20, tenureEtc: 3 },
+      { id: 't42', name: '김성주', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['정보부', '교무기획부', '연구부', '과학부'], headPref: '정보부장', tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 1, tenureTotal: 6, tenureEtc: 0 },
 
       // 4 Specialty Teachers (role: 'specialty')
       { id: 't43', name: '한지민', role: 'specialty', specialtyType: '과학전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['체육예술부', '정보부', '연구부', '교무기획부'], headPref: '', tenureSchool: 4, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 14, tenureEtc: 1 },
       { id: 't44', name: '유은지', role: 'specialty', specialtyType: '체육전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['체육예술부', '연구부', '정보부', '학생생활부'], headPref: '', tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 5, tenureEtc: 0 },
-      { id: 't45', name: '심도하', role: 'specialty', specialtyType: '영어전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['정보부', '체육예술부', '교무기획부', '교육과정부'], headPref: '', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 7, tenureEtc: 0 },
-      { id: 't46', name: '차은우', role: 'specialty', specialtyType: '음악전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['교육과정부', '연구부', '학생생활부', '정보부'], headPref: '', tenureSchool: 1, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
+      { id: 't45', name: '심도하', role: 'specialty', specialtyType: '영어전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['정보부', '체육예술부', '교무기획부', '과학부'], headPref: '', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 7, tenureEtc: 0 },
+      { id: 't46', name: '차은우', role: 'specialty', specialtyType: '음악전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['과학부', '연구부', '학생생활부', '정보부'], headPref: '', tenureSchool: 1, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
 
       // 2 Health Teachers (role: 'specialty', specialtyType: '보건교사')
-      { id: 't47', name: '정보건', role: 'specialty', specialtyType: '보건교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['환경위생부', '교무기획부', '학생생활부', '연구부'], headPref: '', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
-      { id: 't48', name: '이보건', role: 'specialty', specialtyType: '보건교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['환경위생부', '교육과정부', '연구부', '정보부'], headPref: '', tenureSchool: 1, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
+      { id: 't47', name: '정보건', role: 'specialty', specialtyType: '보건교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['과학부', '교무기획부', '학생생활부', '연구부'], headPref: '', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
+      { id: 't48', name: '이보건', role: 'specialty', specialtyType: '보건교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['교무기획부', '과학부', '연구부', '정보부'], headPref: '', tenureSchool: 1, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
 
       // 1 Nutrition Teacher (role: 'specialty', specialtyType: '영양교사')
-      { id: 't49', name: '최영양', role: 'specialty', specialtyType: '영양교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['환경위생부', '교무기획부', '연구부', '학생생활부'], headPref: '', tenureSchool: 4, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 10, tenureEtc: 2 },
+      { id: 't49', name: '최영양', role: 'specialty', specialtyType: '영양교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['과학부', '교무기획부', '연구부', '학생생활부'], headPref: '', tenureSchool: 4, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 10, tenureEtc: 2 },
 
       // 1 Counseling Teacher (role: 'specialty', specialtyType: '상담교사')
-      { id: 't50', name: '정상담', role: 'specialty', specialtyType: '상담교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['학생생활부', '교무기획부', '교육과정부', '연구부'], headPref: '', tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 5, tenureEtc: 1 },
+      { id: 't50', name: '정상담', role: 'specialty', specialtyType: '상담교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['학생생활부', '교무기획부', '과학부', '연구부'], headPref: '', tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 5, tenureEtc: 1 },
 
       // 1 Librarian (role: 'specialty', specialtyType: '사서교사')
-      { id: 't51', name: '백사서', role: 'specialty', specialtyType: '사서교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['교육과정부', '교무기획부', '연구부', '정보부'], headPref: '', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 9, tenureEtc: 1 }
+      { id: 't51', name: '백사서', role: 'specialty', specialtyType: '사서교사', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['과학부', '교무기획부', '연구부', '정보부'], headPref: '', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 9, tenureEtc: 1 },
+
+      // 1 Principal (role: 'specialty', specialtyType: '교장')
+      { id: 't52', name: '김교장', role: 'specialty', specialtyType: '교장', fixedDept: '기타/없음', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['기타/없음', '기타/없음', '기타/없음', '기타/없음', '기타/없음'], headPref: '', tenureSchool: 0, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 0, tenureEtc: 0 },
+
+      // 1 Vice Principal (role: 'specialty', specialtyType: '교감')
+      { id: 't53', name: '박교감', role: 'specialty', specialtyType: '교감', fixedDept: '기타/없음', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['기타/없음', '기타/없음', '기타/없음', '기타/없음', '기타/없음'], headPref: '', tenureSchool: 0, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 0, tenureEtc: 0 }
     ];
 
     const DEFAULT_WEIGHTS = {
@@ -269,26 +275,25 @@
       const [specialtyCount, setSpecialtyCount] = useState(4);
       const [specialTeacherCount, setSpecialTeacherCount] = useState(0);
       const [supportTeacherCount, setSupportTeacherCount] = useState(5);
-      const [principalCount, setPrincipalCount] = useState(0);
-      const [vicePrincipalCount, setVicePrincipalCount] = useState(0);
-      const [totalTeacherCount, setTotalTeacherCount] = useState(51);
+      const [principalCount, setPrincipalCount] = useState(1);
+      const [vicePrincipalCount, setVicePrincipalCount] = useState(1);
+      const [totalTeacherCount, setTotalTeacherCount] = useState(53);
 
 
       const [departments, setDepartments] = useState([
-        '학년부', '교무기획부', '교육과정부', '학생생활부', '연구부', '체육예술부', '정보부', '환경위생부'
+        '학년부', '교무기획부', '과학부', '학생생활부', '연구부', '체육예술부', '정보부'
       ]);
       const [deptCapacities, setDeptCapacities] = useState({
-        '학년부': 6, '교무기획부': 5, '교육과정부': 5, '학생생활부': 5, '연구부': 5, '체육예술부': 5, '정보부': 5, '환경위생부': 5
+        '학년부': 6, '교무기획부': 5, '과학부': 5, '학생생활부': 5, '연구부': 5, '체육예술부': 5, '정보부': 5
       });
       const [newDeptName, setNewDeptName] = useState('');
       const [positions, setPositions] = useState([
         { id: 'p-1', name: '교무기획부장', dept: '교무기획부' },
-        { id: 'p-2', name: '교육과정부장', dept: '교육과정부' },
+        { id: 'p-2', name: '과학부장', dept: '과학부' },
         { id: 'p-3', name: '학생생활부장', dept: '학생생활부' },
         { id: 'p-4', name: '연구부장', dept: '연구부' },
         { id: 'p-5', name: '체육예술부장', dept: '체육예술부' },
         { id: 'p-6', name: '정보부장', dept: '정보부' },
-        { id: 'p-7', name: '환경위생부장', dept: '환경위생부' },
         { id: 'p-8', name: '학년부장', dept: '학년부' }
       ]);
       const [newPosName, setNewPosName] = useState('');
@@ -325,7 +330,7 @@
         role: 'homeroom', 
         specialtyType: '보건교사', 
         gradePrefs: [1, 2, 3, 4, 5],
-        deptPrefs: ['교무기획부', '연구부', '교육과정부', '학생생활부'],
+        deptPrefs: ['교무기획부', '연구부', '과학부', '학생생활부'],
         headPref: '',
         tenureSchool: 0,
         tenureHomeroom: 0,
@@ -719,18 +724,17 @@
       const resetToSampleData = () => {
         setTeachers(INITIAL_TEACHERS);
         setClassCounts({ 1: 6, 2: 6, 3: 6, 4: 6, 5: 7, 6: 7 });
-        setDepartments(['학년부', '교무기획부', '교육과정부', '학생생활부', '연구부', '체육예술부', '정보부', '환경위생부']);
+        setDepartments(['학년부', '교무기획부', '과학부', '학생생활부', '연구부', '체육예술부', '정보부']);
         setDeptCapacities({
-          '학년부': 6, '교무기획부': 5, '교육과정부': 5, '학생생활부': 5, '연구부': 5, '체육예술부': 5, '정보부': 5, '환경위생부': 5
+          '학년부': 6, '교무기획부': 5, '과학부': 5, '학생생활부': 5, '연구부': 5, '체육예술부': 5, '정보부': 5
         });
         setPositions([
           { id: 'p-1', name: '교무기획부장', dept: '교무기획부' },
-          { id: 'p-2', name: '교육과정부장', dept: '교육과정부' },
+          { id: 'p-2', name: '과학부장', dept: '과학부' },
           { id: 'p-3', name: '학생생활부장', dept: '학생생활부' },
           { id: 'p-4', name: '연구부장', dept: '연구부' },
           { id: 'p-5', name: '체육예술부장', dept: '체육예술부' },
           { id: 'p-6', name: '정보부장', dept: '정보부' },
-          { id: 'p-7', name: '환경위생부장', dept: '환경위생부' },
           { id: 'p-8', name: '학년부장', dept: '학년부' }
         ]);
         setDifficultGrades([1, 6]);
@@ -742,13 +746,13 @@
         setSpecialtyCount(4);
         setSpecialTeacherCount(0);
         setSupportTeacherCount(5);
-        setPrincipalCount(0);
-        setVicePrincipalCount(0);
+        setPrincipalCount(1);
+        setVicePrincipalCount(1);
         setSpecialtyTypes(['과학전담', '체육전담', '영어전담', '음악전담', '특수교사', '보건교사', '영양교사', '상담교사', '사서교사']);
         setTotalTeacherCount(INITIAL_TEACHERS.length);
         setAssignmentResult(null);
         setTeacherSearchQuery('');
-        showToast('샘플 데이터(교원 51명 기준)가 성공적으로 복원되었습니다.', 'success');
+        showToast('샘플 데이터(교원 53명 기준)가 성공적으로 복원되었습니다.', 'success');
       };
 
       const clearAllData = () => {
@@ -2102,7 +2106,7 @@
                   className="px-3.5 py-2 text-xs font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl transition-all duration-200 flex items-center gap-1.5 active:scale-95 shadow-sm"
                 >
                   <RefreshCw className="w-3.5 h-3.5 text-indigo-600" />
-                  샘플 데이터 로드 (51명)
+                  샘플 데이터 로드 (53명)
                 </button>
                 <button
                   onClick={clearAllData}
