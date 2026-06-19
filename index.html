@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026학년도 신학기 교무조직 설계 및 학급담임 매칭 엔진</title>
+  <title>2027학년도 신학기 교무조직 설계 및 학급담임 매칭 엔진</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -1035,7 +1035,7 @@
           const url = URL.createObjectURL(blob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = `${schoolName}_2026교무조직설정.json`;
+          link.download = `${schoolName}_2027교무조직설정.json`;
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
@@ -2091,7 +2091,7 @@
       const copyResultsToClipboard = () => {
         if (!assignmentResult) return;
         
-        let text = `[2026학년도 ${schoolName} 담임 및 업무분장 배정표]\n\n`;
+        let text = `[2027학년도 ${schoolName} 담임 및 업무분장 배정표]\n\n`;
         
         text += `■ 관리자 현황\n`;
         const principal = assignmentResult.teachers.find(t => t.specialtyType === '교장');
@@ -2142,7 +2142,7 @@
       const downloadResultsAsFile = () => {
         if (!assignmentResult) return;
         
-        let text = `[2026학년도 ${schoolName} 담임 및 업무분장 배정표]\n`;
+        let text = `[2027학년도 ${schoolName} 담임 및 업무분장 배정표]\n`;
         text += `배정 일시: ${assignmentResult.timestamp}\n\n`;
         text += `=========================================\n`;
         text += `               관리자 현황               \n`;
@@ -2186,7 +2186,7 @@
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = `${schoolName}_2026학년도_배정결과.txt`;
+        link.download = `${schoolName}_2027학년도_배정결과.txt`;
         link.click();
         URL.revokeObjectURL(url);
         showToast('텍스트 파일 다운로드가 시작되었습니다.', 'success');
@@ -2286,7 +2286,7 @@
                   </div>
                   <p className="text-xs text-slate-500 mt-1 flex items-center gap-1.5 font-medium">
                     <Layers3 className="w-3.5 h-3.5 text-indigo-500" />
-                    2026학년도 신학기 교무조직 설계 및 학급담임 매칭 엔진
+                    2027학년도 신학기 교무조직 설계 및 학급담임 매칭 엔진
                   </p>
                 </div>
               </div>
@@ -4762,7 +4762,7 @@
             <div id="print-area" className="print-only hidden print:block">
               <div style={{ textAlign: 'center', marginBottom: '18px' }}>
                 <h1 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 5px 0', borderBottom: '2px solid #000', paddingBottom: '8px' }}>
-                  2026학년도 신학기 교무조직 설계 및 학급담임 매칭 결과
+                  2027학년도 신학기 교무조직 설계 및 학급담임 매칭 결과
                 </h1>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: '#334155', marginTop: '8px' }}>
                   <span>학교명: <strong>{schoolName}</strong></span>
