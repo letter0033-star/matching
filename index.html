@@ -80,6 +80,20 @@
       -moz-appearance: textfield;
     }
     
+    /* 대장 표 상단에 붙는 가로 스크롤바 (표 하단 스크롤바와 좌우 위치 동기화) */
+    .h-scrollbar {
+      scrollbar-width: auto;
+      scrollbar-color: #94a3b8 #f1f5f9;
+    }
+    .h-scrollbar::-webkit-scrollbar { height: 12px; }
+    .h-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+    .h-scrollbar::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 6px;
+      border: 3px solid #f1f5f9;
+    }
+    .h-scrollbar::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
     @media print {
       body {
         background: white !important;
@@ -167,83 +181,91 @@
     } = icons;
 
     const INITIAL_TEACHERS = [
-      // 30 Homeroom Teachers (no headPref, role: 'homeroom')
-      { id: 't1', name: '강민준', role: 'homeroom', gradePrefs: [6, 5, 4, 3, 2], deptPrefs: ['교무기획부', '정보과학기획부', '생활기획부', '연구기획부'], headPref: '', tenureSchool: 4, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 0, tenureTotal: 12, tenureEtc: 2 },
-      { id: 't2', name: '이지아', role: 'homeroom', gradePrefs: [1, 2, 3, 5, 6], deptPrefs: ['생활기획부', '체육기획부', '연구기획부', '안전복지기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 3, tenureDifficult: 2, tenureHead: 0, tenureTotal: 5, tenureEtc: 1 },
-      { id: 't3', name: '김도윤', role: 'homeroom', gradePrefs: [5, 6, 4, 3, 2], deptPrefs: ['연구기획부', '교무기획부', '연구기획부', '정보과학기획부'], headPref: '', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 4, tenureHead: 0, tenureTotal: 15, tenureEtc: 3 },
-      { id: 't4', name: '박수아', role: 'homeroom', gradePrefs: [2, 3, 1, 4, 5], deptPrefs: ['정보과학기획부', '안전복지기획부', '생활기획부', '체육기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
-      { id: 't5', name: '최현우', role: 'homeroom', gradePrefs: [5, 6, 3, 4, 1], deptPrefs: ['생활기획부', '교무기획부', '체육기획부', '연구기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 0, tenureTotal: 10, tenureEtc: 2 },
-      { id: 't6', name: '정하은', role: 'homeroom', gradePrefs: [3, 4, 2, 1, 5], deptPrefs: ['안전복지기획부', '연구기획부', '정보과학기획부', '체육기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
-      { id: 't7', name: '오세훈', role: 'homeroom', gradePrefs: [1, 2, 6, 5, 4], deptPrefs: ['체육기획부', '생활기획부', '안전복지기획부', '정보과학기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
-      { id: 't8', name: '서예진', role: 'homeroom', gradePrefs: [4, 3, 2, 5, 1], deptPrefs: ['연구기획부', '정보과학기획부', '연구기획부', '생활기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
-      { id: 't9', name: '신재현', role: 'homeroom', gradePrefs: [6, 5, 1, 2, 3], deptPrefs: ['연구기획부', '생활기획부', '교무기획부', '안전복지기획부'], headPref: '', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 3, tenureHead: 0, tenureTotal: 9, tenureEtc: 2 },
-      { id: 't10', name: '권다은', role: 'homeroom', gradePrefs: [2, 1, 3, 4, 6], deptPrefs: ['안전복지기획부', '체육기획부', '연구기획부', '체육기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 7, tenureEtc: 1 },
-      { id: 't11', name: '안소율', role: 'homeroom', gradePrefs: [5, 4, 3, 2, 6], deptPrefs: ['생활기획부', '체육기획부', '연구기획부', '교무기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
-      { id: 't12', name: '송준호', role: 'homeroom', gradePrefs: [1, 6, 5, 4, 3], deptPrefs: ['체육기획부', '안전복지기획부', '교무기획부', '연구기획부'], headPref: '', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 4, tenureHead: 0, tenureTotal: 16, tenureEtc: 3 },
-      { id: 't13', name: '양우진', role: 'homeroom', gradePrefs: [4, 5, 6, 2, 3], deptPrefs: ['연구기획부', '생활기획부', '연구기획부', '안전복지기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
-      { id: 't14', name: '백서연', role: 'homeroom', gradePrefs: [3, 2, 1, 6, 5], deptPrefs: ['교무기획부', '연구기획부', '생활기획부', '연구기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 2, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
-      { id: 't15', name: '고태양', role: 'homeroom', gradePrefs: [6, 5, 4, 1, 2], deptPrefs: ['생활기획부', '연구기획부', '체육기획부', '안전복지기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 1, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
-      { id: 't16', name: '전유진', role: 'homeroom', gradePrefs: [1, 2, 3, 4, 5], deptPrefs: ['체육기획부', '안전복지기획부', '연구기획부', '연구기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 5, tenureEtc: 1 },
-      { id: 't17', name: '노하윤', role: 'homeroom', gradePrefs: [2, 3, 4, 1, 6], deptPrefs: ['교무기획부', '체육기획부', '체육기획부', '연구기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
-      { id: 't18', name: '곽민재', role: 'homeroom', gradePrefs: [4, 5, 3, 2, 1], deptPrefs: ['연구기획부', '생활기획부', '안전복지기획부', '교무기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 0, tenureTotal: 10, tenureEtc: 2 },
-      { id: 't19', name: '배지아', role: 'homeroom', gradePrefs: [3, 4, 1, 2, 5], deptPrefs: ['체육기획부', '체육기획부', '연구기획부', '안전복지기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
-      { id: 't20', name: '변정우', role: 'homeroom', gradePrefs: [1, 6, 2, 3, 4], deptPrefs: ['체육기획부', '교무기획부', '연구기획부', '생활기획부'], headPref: '', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 3, tenureHead: 0, tenureTotal: 12, tenureEtc: 1 },
-      { id: 't21', name: '민서하', role: 'homeroom', gradePrefs: [5, 6, 4, 3, 2], deptPrefs: ['생활기획부', '안전복지기획부', '체육기획부', '연구기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 2, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
-      { id: 't22', name: '지승현', role: 'homeroom', gradePrefs: [6, 1, 5, 2, 3], deptPrefs: ['연구기획부', '교무기획부', '체육기획부', '안전복지기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
-      { id: 't23', name: '조현우', role: 'homeroom', gradePrefs: [3, 4, 5, 1, 2], deptPrefs: ['교무기획부', '정보과학기획부', '연구기획부', '생활기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 0, tenureTotal: 5, tenureEtc: 0 },
-      { id: 't24', name: '윤서윤', role: 'homeroom', gradePrefs: [2, 3, 4, 5, 6], deptPrefs: ['연구기획부', '생활기획부', '안전복지기획부', '정보과학기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 7, tenureEtc: 1 },
-      { id: 't25', name: '한재원', role: 'homeroom', gradePrefs: [4, 5, 6, 1, 2], deptPrefs: ['정보과학기획부', '교무기획부', '안전복지기획부', '체육기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
-      { id: 't26', name: '서주원', role: 'homeroom', gradePrefs: [1, 2, 3, 4, 5], deptPrefs: ['정보과학기획부', '연구기획부', '생활기획부', '교무기획부'], headPref: '', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 0, tenureTotal: 11, tenureEtc: 2 },
-      { id: 't27', name: '윤도현', role: 'homeroom', gradePrefs: [5, 6, 1, 2, 3], deptPrefs: ['안전복지기획부', '정보과학기획부', '체육기획부', '연구기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
-      { id: 't28', name: '임수아', role: 'homeroom', gradePrefs: [3, 4, 2, 5, 6], deptPrefs: ['교무기획부', '생활기획부', '정보과학기획부', '안전복지기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
-      { id: 't29', name: '김우빈', role: 'homeroom', gradePrefs: [6, 1, 2, 3, 4], deptPrefs: ['연구기획부', '정보과학기획부', '생활기획부', '교무기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
-      { id: 't30', name: '정소윤', role: 'homeroom', gradePrefs: [2, 3, 5, 6, 1], deptPrefs: ['생활기획부', '안전복지기획부', '교무기획부', '연구기획부'], headPref: '', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 0, tenureTotal: 14, tenureEtc: 2 },
+      // 학년부장 6명 — 담당 희망 학년을 1지망으로 신청
+      { id: 't1', name: '장하준', gender: '남', role: 'homeroom_head', prevGrade: 2, headPref: '학년부장', gradePrefs: [1, 2, 3, 4, 5], deptPrefs: ['학년부', '교무기획부', '정보과학기획부', '생활기획부', '연구기획부'], tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 11, tenureEtc: 1 },
+      { id: 't2', name: '윤지우', gender: '여', role: 'homeroom_head', prevGrade: 3, headPref: '학년부장', gradePrefs: [2, 1, 3, 4, 5], deptPrefs: ['학년부', '연구기획부', '교무기획부', '정보과학기획부', '생활기획부'], tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 1, tenureTotal: 8, tenureEtc: 1 },
+      { id: 't3', name: '강태윤', gender: '남', role: 'homeroom_head', prevGrade: 4, headPref: '학년부장', gradePrefs: [3, 2, 4, 1, 5], deptPrefs: ['학년부', '체육기획부', '교무기획부', '정보과학기획부', '생활기획부'], tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 3, tenureTotal: 16, tenureEtc: 2 },
+      { id: 't4', name: '김채원', gender: '여', role: 'homeroom_head', prevGrade: 5, headPref: '학년부장', gradePrefs: [4, 3, 5, 2, 6], deptPrefs: ['학년부', '정보과학기획부', '교무기획부', '생활기획부', '연구기획부'], tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 1, tenureTotal: 6, tenureEtc: 0 },
+      { id: 't5', name: '이서준', gender: '남', role: 'homeroom_head', prevGrade: 6, headPref: '학년부장', gradePrefs: [5, 4, 6, 3, 2], deptPrefs: ['학년부', '생활기획부', '교무기획부', '정보과학기획부', '연구기획부'], tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 12, tenureEtc: 2 },
+      { id: 't6', name: '박지아', gender: '여', role: 'homeroom_head', prevGrade: 1, headPref: '학년부장', gradePrefs: [6, 5, 4, 3, 2], deptPrefs: ['학년부', '안전복지기획부', '교무기획부', '정보과학기획부', '생활기획부'], tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 4, tenureHead: 4, tenureTotal: 18, tenureEtc: 3 },
 
-      // 6 Grade Head Teachers (role: 'homeroom_head', headPref: '학년부장')
-      { id: 't31', name: '장하준', role: 'homeroom_head', gradePrefs: [1, 2, 3, 4, 5], deptPrefs: ['학년부', '교무기획부', '정보과학기획부', '연구기획부'], headPref: '학년부장', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 10, tenureEtc: 1 },
-      { id: 't32', name: '윤지우', role: 'homeroom_head', gradePrefs: [2, 1, 3, 4, 5], deptPrefs: ['학년부', '정보과학기획부', '생활기획부', '연구기획부'], headPref: '학년부장', tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 1, tenureTotal: 7, tenureEtc: 1 },
-      { id: 't33', name: '강태윤', role: 'homeroom_head', gradePrefs: [3, 2, 4, 5, 6], deptPrefs: ['학년부', '연구기획부', '안전복지기획부', '체육기획부'], headPref: '학년부장', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 3, tenureTotal: 15, tenureEtc: 3 },
-      { id: 't34', name: '김채원', role: 'homeroom_head', gradePrefs: [4, 3, 5, 6, 1], deptPrefs: ['학년부', '생활기획부', '교무기획부', '연구기획부'], headPref: '학년부장', tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 1, tenureTotal: 5, tenureEtc: 0 },
-      { id: 't35', name: '이서준', role: 'homeroom_head', gradePrefs: [5, 4, 6, 3, 2], deptPrefs: ['학년부', '안전복지기획부', '연구기획부', '정보과학기획부'], headPref: '학년부장', tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 11, tenureEtc: 2 },
-      { id: 't36', name: '박지아', role: 'homeroom_head', gradePrefs: [6, 5, 4, 3, 2], deptPrefs: ['학년부', '체육기획부', '생활기획부', '교무기획부'], headPref: '학년부장', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 4, tenureHead: 4, tenureTotal: 17, tenureEtc: 4 },
+      // 부장(전담)교사 4명 — 담임 없이 부서장만 담당
+      { id: 't7', name: '최현석', gender: '남', role: 'head', prevGrade: 4, specialtyType: '체육전담', headPref: '생활기획부장', gradePrefs: [6, 1, 2, 3, 4], deptPrefs: ['생활기획부', '교무기획부', '정보과학기획부', '연구기획부', '체육기획부'], tenureSchool: 4, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 3, tenureTotal: 13, tenureEtc: 2 },
+      { id: 't8', name: '황광희', gender: '여', role: 'head', prevGrade: 3, specialtyType: '과학전담', headPref: '연구기획부장', gradePrefs: [5, 2, 6, 1, 3], deptPrefs: ['연구기획부', '교무기획부', '정보과학기획부', '생활기획부', '체육기획부'], tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 2, tenureTotal: 9, tenureEtc: 1 },
+      { id: 't9', name: '이경규', gender: '남', role: 'head', prevGrade: 5, specialtyType: '체육전담', headPref: '체육기획부장', gradePrefs: [4, 6, 1, 2, 3], deptPrefs: ['체육기획부', '교무기획부', '정보과학기획부', '생활기획부', '연구기획부'], tenureSchool: 5, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 4, tenureTotal: 21, tenureEtc: 3 },
+      { id: 't10', name: '김성주', gender: '여', role: 'head', prevGrade: 2, specialtyType: '영어전담', headPref: '안전복지기획부장', gradePrefs: [3, 1, 2, 6, 4], deptPrefs: ['안전복지기획부', '교무기획부', '정보과학기획부', '생활기획부', '연구기획부'], tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 1, tenureTotal: 7, tenureEtc: 0 },
 
-      // 2 Homeroom (Head) Teachers (role: 'homeroom_head')
-      { id: 't37', name: '임도현', role: 'homeroom_head', gradePrefs: [6, 1, 2, 3, 4], deptPrefs: ['교무기획부', '생활기획부', '연구기획부', '정보과학기획부'], headPref: '교무기획부장', tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 5, tenureHead: 5, tenureTotal: 18, tenureEtc: 4 },
-      { id: 't38', name: '황민철', role: 'homeroom_head', gradePrefs: [3, 4, 5, 6, 1], deptPrefs: ['정보과학기획부', '교무기획부', '안전복지기획부', '체육기획부'], headPref: '정보과학기획부장', tenureSchool: 3, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 11, tenureEtc: 1 },
+      // 일반 담임교사 30명
+      { id: 't11', name: '강민준', gender: '남', role: 'homeroom', prevGrade: 4, headPref: '', gradePrefs: [3, 1, 2, 6, 4], deptPrefs: ['교무기획부', '학년부', '정보과학기획부', '생활기획부', '안전복지기획부'], tenureSchool: 4, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 0, tenureTotal: 12, tenureEtc: 2 },
+      { id: 't12', name: '이지아', gender: '여', role: 'homeroom', prevGrade: 6, headPref: '', gradePrefs: [4, 2, 6, 1, 3], deptPrefs: ['연구기획부', '정보과학기획부', '안전복지기획부', '학년부', '생활기획부'], tenureSchool: 2, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 1 },
+      { id: 't13', name: '김도윤', gender: '남', role: 'homeroom', prevGrade: 2, headPref: '', gradePrefs: [5, 6, 1, 2, 3], deptPrefs: ['연구기획부', '학년부', '안전복지기획부', '정보과학기획부', '생활기획부'], tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 4, tenureHead: 0, tenureTotal: 15, tenureEtc: 3 },
+      { id: 't14', name: '박수아', gender: '여', role: 'homeroom', prevGrade: 4, headPref: '', gradePrefs: [6, 1, 2, 3, 4], deptPrefs: ['체육기획부', '안전복지기획부', '정보과학기획부', '생활기획부', '학년부'], tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
+      { id: 't15', name: '최현우', gender: '남', role: 'homeroom', prevGrade: 2, headPref: '', gradePrefs: [3, 2, 6, 1, 4], deptPrefs: ['학년부', '정보과학기획부', '생활기획부', '안전복지기획부', '연구기획부'], tenureSchool: 3, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 0, tenureTotal: 10, tenureEtc: 2 },
+      { id: 't16', name: '정하은', gender: '여', role: 'homeroom', prevGrade: 4, headPref: '', gradePrefs: [4, 6, 1, 2, 3], deptPrefs: ['교무기획부', '정보과학기획부', '학년부', '생활기획부', '안전복지기획부'], tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 7, tenureEtc: 1 },
+      { id: 't17', name: '오세훈', gender: '남', role: 'homeroom', prevGrade: 6, headPref: '', gradePrefs: [5, 1, 2, 6, 3], deptPrefs: ['연구기획부', '학년부', '정보과학기획부', '생활기획부', '안전복지기획부'], tenureSchool: 1, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
+      { id: 't18', name: '서예진', gender: '여', role: 'homeroom', prevGrade: 4, headPref: '', gradePrefs: [2, 1, 6, 4, 5], deptPrefs: ['체육기획부', '생활기획부', '안전복지기획부', '학년부', '정보과학기획부'], tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 0, tenureTotal: 5, tenureEtc: 0 },
+      { id: 't19', name: '신재현', gender: '남', role: 'homeroom', prevGrade: 1, headPref: '', gradePrefs: [4, 6, 1, 2, 3], deptPrefs: ['정보과학기획부', '생활기획부', '안전복지기획부', '학년부', '체육기획부'], tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 3, tenureHead: 0, tenureTotal: 10, tenureEtc: 2 },
+      { id: 't20', name: '권다은', gender: '여', role: 'homeroom', prevGrade: 3, headPref: '', gradePrefs: [5, 1, 2, 6, 3], deptPrefs: ['교무기획부', '정보과학기획부', '생활기획부', '안전복지기획부', '학년부'], tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
+      { id: 't21', name: '안소율', gender: '여', role: 'homeroom', prevGrade: 1, headPref: '', gradePrefs: [2, 1, 6, 4, 5], deptPrefs: ['연구기획부', '학년부', '생활기획부', '안전복지기획부', '정보과학기획부'], tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
+      { id: 't22', name: '송준호', gender: '남', role: 'homeroom', prevGrade: 4, headPref: '', gradePrefs: [4, 6, 1, 2, 3], deptPrefs: ['체육기획부', '안전복지기획부', '학년부', '정보과학기획부', '생활기획부'], tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 4, tenureHead: 0, tenureTotal: 17, tenureEtc: 3 },
+      { id: 't23', name: '양우진', gender: '남', role: 'homeroom', prevGrade: 6, headPref: '', gradePrefs: [5, 1, 2, 6, 3], deptPrefs: ['교무기획부', '학년부', '정보과학기획부', '생활기획부', '안전복지기획부'], tenureSchool: 2, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 7, tenureEtc: 0 },
+      { id: 't24', name: '백서연', gender: '여', role: 'homeroom', prevGrade: 5, headPref: '', gradePrefs: [3, 2, 6, 1, 4], deptPrefs: ['연구기획부', '정보과학기획부', '안전복지기획부', '학년부', '생활기획부'], tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 2, tenureHead: 0, tenureTotal: 9, tenureEtc: 1 },
+      { id: 't25', name: '고태양', gender: '남', role: 'homeroom', prevGrade: 1, headPref: '', gradePrefs: [4, 6, 1, 2, 3], deptPrefs: ['체육기획부', '학년부', '안전복지기획부', '정보과학기획부', '생활기획부'], tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 1, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
+      { id: 't26', name: '전유진', gender: '여', role: 'homeroom', prevGrade: 5, headPref: '', gradePrefs: [1, 2, 6, 3, 4], deptPrefs: ['교무기획부', '생활기획부', '정보과학기획부', '안전복지기획부', '학년부'], tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 6, tenureEtc: 1 },
+      { id: 't27', name: '노하윤', gender: '여', role: 'homeroom', prevGrade: 3, headPref: '', gradePrefs: [4, 2, 6, 1, 3], deptPrefs: ['연구기획부', '학년부', '생활기획부', '안전복지기획부', '정보과학기획부'], tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
+      { id: 't28', name: '곽민재', gender: '남', role: 'homeroom', prevGrade: 1, headPref: '', gradePrefs: [1, 2, 6, 5, 3], deptPrefs: ['체육기획부', '정보과학기획부', '학년부', '생활기획부', '안전복지기획부'], tenureSchool: 3, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 0, tenureTotal: 11, tenureEtc: 2 },
+      { id: 't29', name: '배지아', gender: '여', role: 'homeroom', prevGrade: 5, headPref: '', gradePrefs: [4, 1, 2, 6, 3], deptPrefs: ['교무기획부', '학년부', '정보과학기획부', '생활기획부', '안전복지기획부'], tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 5, tenureEtc: 0 },
+      { id: 't30', name: '변정우', gender: '남', role: 'homeroom', prevGrade: 5, headPref: '', gradePrefs: [3, 2, 6, 1, 4], deptPrefs: ['체육기획부', '안전복지기획부', '생활기획부', '학년부', '정보과학기획부'], tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 3, tenureHead: 0, tenureTotal: 13, tenureEtc: 1 },
+      { id: 't31', name: '민서하', gender: '여', role: 'homeroom', prevGrade: 2, headPref: '', gradePrefs: [5, 6, 1, 2, 3], deptPrefs: ['연구기획부', '학년부', '안전복지기획부', '정보과학기획부', '생활기획부'], tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 2, tenureHead: 0, tenureTotal: 9, tenureEtc: 1 },
+      { id: 't32', name: '지승현', gender: '남', role: 'homeroom', prevGrade: 1, headPref: '', gradePrefs: [3, 1, 2, 6, 4], deptPrefs: ['교무기획부', '정보과학기획부', '생활기획부', '안전복지기획부', '학년부'], tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 7, tenureEtc: 0 },
+      { id: 't33', name: '조현우', gender: '남', role: 'homeroom', prevGrade: 2, headPref: '', gradePrefs: [3, 2, 6, 1, 4], deptPrefs: ['연구기획부', '학년부', '생활기획부', '안전복지기획부', '정보과학기획부'], tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
+      { id: 't34', name: '윤서윤', gender: '여', role: 'homeroom', prevGrade: 6, headPref: '', gradePrefs: [6, 1, 2, 5, 3], deptPrefs: ['연구기획부', '생활기획부', '학년부', '정보과학기획부', '안전복지기획부'], tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
+      { id: 't35', name: '한재원', gender: '남', role: 'homeroom', prevGrade: 6, headPref: '', gradePrefs: [5, 1, 2, 6, 3], deptPrefs: ['교무기획부', '학년부', '정보과학기획부', '생활기획부', '안전복지기획부'], tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
+      { id: 't36', name: '서주원', gender: '여', role: 'homeroom', prevGrade: 4, headPref: '', gradePrefs: [2, 1, 6, 4, 5], deptPrefs: ['연구기획부', '정보과학기획부', '안전복지기획부', '학년부', '생활기획부'], tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 0, tenureTotal: 12, tenureEtc: 2 },
+      { id: 't37', name: '윤도현', gender: '남', role: 'homeroom', prevGrade: 6, headPref: '', gradePrefs: [3, 6, 1, 2, 4], deptPrefs: ['생활기획부', '정보과학기획부', '안전복지기획부', '학년부', '체육기획부'], tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 1, tenureHead: 0, tenureTotal: 7, tenureEtc: 0 },
+      { id: 't38', name: '임수아', gender: '여', role: 'homeroom', prevGrade: 3, headPref: '', gradePrefs: [5, 1, 2, 6, 3], deptPrefs: ['체육기획부', '안전복지기획부', '정보과학기획부', '생활기획부', '학년부'], tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 1, tenureHead: 0, tenureTotal: 9, tenureEtc: 1 },
+      { id: 't39', name: '김우빈', gender: '남', role: 'homeroom', prevGrade: 3, headPref: '', gradePrefs: [4, 2, 6, 1, 3], deptPrefs: ['교무기획부', '학년부', '생활기획부', '안전복지기획부', '정보과학기획부'], tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
+      { id: 't40', name: '정소윤', gender: '여', role: 'homeroom', prevGrade: 3, headPref: '', gradePrefs: [3, 6, 1, 2, 4], deptPrefs: ['교무기획부', '정보과학기획부', '학년부', '생활기획부', '안전복지기획부'], tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 3, tenureHead: 0, tenureTotal: 15, tenureEtc: 2 },
 
-      // 4 Specialty Head Teachers (role: 'head')
-      { id: 't39', name: '최현석', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['생활기획부', '연구기획부', '교무기획부', '안전복지기획부'], headPref: '생활기획부장', tenureSchool: 4, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 3, tenureTotal: 12, tenureEtc: 2 },
-      { id: 't40', name: '황광희', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['연구기획부', '안전복지기획부', '체육기획부', '정보과학기획부'], headPref: '연구기획부장', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 2, tenureTotal: 8, tenureEtc: 1 },
-      { id: 't41', name: '이경규', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['체육기획부', '정보과학기획부', '생활기획부', '안전복지기획부'], headPref: '체육기획부장', tenureSchool: 5, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 4, tenureTotal: 20, tenureEtc: 3 },
-      { id: 't42', name: '김성주', role: 'head', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['안전복지기획부', '교무기획부', '연구기획부', '정보과학기획부'], headPref: '안전복지기획부장', tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 1, tenureTotal: 6, tenureEtc: 0 },
+      // 부장(담임)교사 2명 — 부서장 + 담임 겸임
+      { id: 't41', name: '임도현', gender: '남', role: 'homeroom_head', prevGrade: 6, headPref: '교무기획부장', gradePrefs: [5, 1, 2, 6, 3], deptPrefs: ['교무기획부', '정보과학기획부', '생활기획부', '연구기획부', '체육기획부'], tenureSchool: 5, tenureHomeroom: 5, tenureDifficult: 5, tenureHead: 5, tenureTotal: 19, tenureEtc: 4 },
+      { id: 't42', name: '황민철', gender: '여', role: 'homeroom_head', prevGrade: 6, headPref: '정보과학기획부장', gradePrefs: [4, 2, 6, 1, 3], deptPrefs: ['정보과학기획부', '교무기획부', '생활기획부', '연구기획부', '체육기획부'], tenureSchool: 3, tenureHomeroom: 4, tenureDifficult: 2, tenureHead: 2, tenureTotal: 12, tenureEtc: 1 },
 
-      // 4 Specialty Teachers (role: 'specialty')
-      { id: 't43', name: '한지민', role: 'specialty', specialtyType: '과학전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['체육기획부', '안전복지기획부', '연구기획부', '교무기획부'], headPref: '', tenureSchool: 4, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 14, tenureEtc: 1 },
-      { id: 't44', name: '유은지', role: 'specialty', specialtyType: '체육전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['체육기획부', '연구기획부', '안전복지기획부', '생활기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 5, tenureEtc: 0 },
-      { id: 't45', name: '심도하', role: 'specialty', specialtyType: '영어전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['안전복지기획부', '체육기획부', '교무기획부', '정보과학기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 7, tenureEtc: 0 },
-      { id: 't46', name: '차은우', role: 'specialty', specialtyType: '음악전담', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['정보과학기획부', '연구기획부', '생활기획부', '안전복지기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
+      // 전담교사 4명
+      { id: 't43', name: '한지민', gender: '여', role: 'specialty', prevGrade: 5, specialtyType: '과학전담', headPref: '', gradePrefs: [5, 2, 6, 1, 3], deptPrefs: ['정보과학기획부', '생활기획부', '안전복지기획부', '학년부', '체육기획부'], tenureSchool: 4, tenureHomeroom: 4, tenureDifficult: 0, tenureHead: 0, tenureTotal: 14, tenureEtc: 1 },
+      { id: 't44', name: '유은지', gender: '여', role: 'specialty', prevGrade: 2, specialtyType: '음악전담', headPref: '', gradePrefs: [3, 6, 1, 2, 4], deptPrefs: ['생활기획부', '정보과학기획부', '안전복지기획부', '학년부', '교무기획부'], tenureSchool: 2, tenureHomeroom: 2, tenureDifficult: 0, tenureHead: 0, tenureTotal: 6, tenureEtc: 0 },
+      { id: 't45', name: '심도하', gender: '남', role: 'specialty', prevGrade: 4, specialtyType: '영어전담', headPref: '', gradePrefs: [4, 1, 2, 6, 3], deptPrefs: ['학년부', '정보과학기획부', '생활기획부', '안전복지기획부', '연구기획부'], tenureSchool: 3, tenureHomeroom: 3, tenureDifficult: 0, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
+      { id: 't46', name: '차은우', gender: '남', role: 'specialty', prevGrade: 1, specialtyType: '체육전담', headPref: '', gradePrefs: [6, 1, 2, 4, 5], deptPrefs: ['안전복지기획부', '정보과학기획부', '생활기획부', '학년부', '체육기획부'], tenureSchool: 1, tenureHomeroom: 1, tenureDifficult: 0, tenureHead: 0, tenureTotal: 4, tenureEtc: 0 },
 
-      // 2 Health Teachers (role: 'specialty', specialtyType: '보건교사')
-      { id: 't47', name: '정보건', role: 'specialty', specialtyType: '보건교사', fixedDept: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['생활기획부', '교무기획부', '연구기획부', '안전복지기획부', '정보과학기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 8, tenureEtc: 1 },
-      { id: 't48', name: '이보건', role: 'specialty', specialtyType: '보건교사', fixedDept: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['안전복지기획부', '생활기획부', '교무기획부', '체육기획부', '연구기획부'], headPref: '', tenureSchool: 1, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 2, tenureEtc: 0 },
+      // 특수·비교과교사 5명 — 보건2/영양1/상담1/사서1
+      { id: 't47', name: '홍유진', gender: '여', role: 'specialty', prevGrade: 0, specialtyType: '보건교사', fixedDept: '', headPref: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['안전복지기획부', '정보과학기획부', '생활기획부', '학년부', '교무기획부'], tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 9, tenureEtc: 1 },
+      { id: 't48', name: '문가온', gender: '여', role: 'specialty', prevGrade: 0, specialtyType: '보건교사', fixedDept: '', headPref: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['생활기획부', '정보과학기획부', '안전복지기획부', '학년부', '연구기획부'], tenureSchool: 1, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 3, tenureEtc: 0 },
+      { id: 't49', name: '배성은', gender: '여', role: 'specialty', prevGrade: 0, specialtyType: '영양교사', fixedDept: '', headPref: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['안전복지기획부', '정보과학기획부', '생활기획부', '학년부', '체육기획부'], tenureSchool: 4, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 11, tenureEtc: 2 },
+      { id: 't50', name: '조민아', gender: '여', role: 'specialty', prevGrade: 0, specialtyType: '상담교사', fixedDept: '', headPref: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['생활기획부', '정보과학기획부', '안전복지기획부', '학년부', '교무기획부'], tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 6, tenureEtc: 1 },
+      { id: 't51', name: '신다움', gender: '남', role: 'specialty', prevGrade: 0, specialtyType: '사서교사', fixedDept: '', headPref: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['정보과학기획부', '생활기획부', '안전복지기획부', '학년부', '연구기획부'], tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 10, tenureEtc: 1 },
 
-      // 1 Nutrition Teacher (role: 'specialty', specialtyType: '영양교사')
-      { id: 't49', name: '최영양', role: 'specialty', specialtyType: '영양교사', fixedDept: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['안전복지기획부', '교무기획부', '생활기획부', '체육기획부', '연구기획부'], headPref: '', tenureSchool: 4, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 10, tenureEtc: 2 },
-
-      // 1 Counseling Teacher (role: 'specialty', specialtyType: '상담교사')
-      { id: 't50', name: '정상담', role: 'specialty', specialtyType: '상담교사', fixedDept: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['생활기획부', '연구기획부', '안전복지기획부', '교무기획부', '정보과학기획부'], headPref: '', tenureSchool: 2, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 5, tenureEtc: 1 },
-
-      // 1 Librarian (role: 'specialty', specialtyType: '사서교사')
-      { id: 't51', name: '백사서', role: 'specialty', specialtyType: '사서교사', fixedDept: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['연구기획부', '정보과학기획부', '교무기획부', '안전복지기획부', '생활기획부'], headPref: '', tenureSchool: 3, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 9, tenureEtc: 1 },
-
-      // 1 Principal (role: 'specialty', specialtyType: '교장')
-      { id: 't52', name: '김교장', role: 'specialty', specialtyType: '교장', fixedDept: '기타/없음', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['기타/없음', '기타/없음', '기타/없음', '기타/없음', '기타/없음'], headPref: '', tenureSchool: 0, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 0, tenureEtc: 0 },
-
-      // 1 Vice Principal (role: 'specialty', specialtyType: '교감')
-      { id: 't53', name: '박교감', role: 'specialty', specialtyType: '교감', fixedDept: '기타/없음', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['기타/없음', '기타/없음', '기타/없음', '기타/없음', '기타/없음'], headPref: '', tenureSchool: 0, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 0, tenureEtc: 0 }
+      // 관리직 2명 — 교장/교감
+      { id: 't52', name: '정대현', gender: '남', role: 'specialty', prevGrade: 0, specialtyType: '교장', fixedDept: '기타/없음', headPref: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['기타/없음', '기타/없음', '기타/없음', '기타/없음', '기타/없음'], tenureSchool: 0, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 0, tenureEtc: 0 },
+      { id: 't53', name: '오정숙', gender: '여', role: 'specialty', prevGrade: 0, specialtyType: '교감', fixedDept: '기타/없음', headPref: '', gradePrefs: [0, 0, 0, 0, 0], deptPrefs: ['기타/없음', '기타/없음', '기타/없음', '기타/없음', '기타/없음'], tenureSchool: 0, tenureHomeroom: 0, tenureDifficult: 0, tenureHead: 0, tenureTotal: 0, tenureEtc: 0 }
     ];
 
+    // 프로그램 버전 / 최종 업데이트일 — 내용을 고칠 때 이 두 줄만 바꾸면 화면에 반영됩니다
+    const APP_VERSION = '6.1';
+    // 함께 배포하는 업무분장 희망원 한글 서식 — index.html 과 "같은 폴더"에 두세요.
+    // 파일 이름을 바꾸면 이 값도 똑같이 바꿔야 합니다.
+    const HWP_FORM_FILE = '2027학년도 업무분장 희망원(한빛초).hwp';
+    const APP_UPDATED = '2026-09-15';
+
     const PROFESSIONAL_TEACHER_TYPES = ['특수교사', '보건교사', '상담교사', '영양교사', '사서교사'];
+
+    // 성별 표기 정규화: 남/남자/남성/M/Male -> '남', 여/여자/여성/F/Female -> '여', 그 외 -> '' (미지정)
+    const normalizeGender = (v) => {
+      const raw = (v === undefined || v === null) ? '' : String(v).trim();
+      if (!raw) return '';
+      if (/^(남|남자|남성|M|MALE)$/i.test(raw)) return '남';
+      if (/^(여|여자|여성|F|FEMALE)$/i.test(raw)) return '여';
+      return '';
+    };
 
     const DEFAULT_WEIGHTS = {
       pref1: 50, 
@@ -257,7 +279,8 @@
       tenureHead: 10,     
       tenureTotal: 1,     
       tenureEtc: 1,      
-      difficultBonus: 10  
+      difficultBonus: 10,
+      prevDifficultBonus: 10  
     };
 
     function App() {
@@ -308,18 +331,21 @@
       
       // Matching weights state (0~20점 수치 증감용)
       const [weights, setWeights] = useState(DEFAULT_WEIGHTS);
-      const [difficultGrades, setDifficultGrades] = useState([1, 6]);
+      const [difficultGrades, setDifficultGrades] = useState([1, 6]);        // 금년 곤란학년
+      const [prevDifficultGrades, setPrevDifficultGrades] = useState([1, 6]); // 전년도 곤란학년
       const [algorithmOption, setAlgorithmOption] = useState('scoreFirst'); // 'scoreFirst' or 'prefFirst'
       
       // Importer modal state
       const [isImportModalOpen, setIsImportModalOpen] = useState(false);
       const [newAdminTeacher, setNewAdminTeacher] = useState({
         name: '',
+        gender: '',
         title: '교장',
         dept: '기타/없음'
       });
       const [newOtherTeacher, setNewOtherTeacher] = useState({
         name: '',
+        gender: '',
         title: '특수교사',
         dept: '기타/없음'
       });
@@ -328,9 +354,29 @@
       // Manual swap/tweak states
       const [activeAdjustSlotId, setActiveAdjustSlotId] = useState(null);
       const [activeAdjustDeptTeacherId, setActiveAdjustDeptTeacherId] = useState(null);
+      // 알고리즘 설명 말풍선 — 처음 접속한 사용자에게 한 번 자동으로 펼쳐 준다
+      const [algHelpOpen, setAlgHelpOpen] = useState(() => {
+        try {
+          if (typeof window !== 'undefined' && window.localStorage) {
+            return localStorage.getItem('teacher_matching_alg_help_seen') !== '1';
+          }
+        } catch (e) {}
+        return false;
+      });
+
+      const closeAlgHelp = () => {
+        setAlgHelpOpen(false);
+        try {
+          if (typeof window !== 'undefined' && window.localStorage) {
+            localStorage.setItem('teacher_matching_alg_help_seen', '1');
+          }
+        } catch (e) {}
+      };
       
       const [newTeacher, setNewTeacher] = useState({
         name: '',
+        gender: '',
+        prevGrade: 0,
         role: 'homeroom', 
         specialtyType: '보건교사', 
         gradePrefs: [1, 2, 3, 4, 5],
@@ -346,6 +392,40 @@
 
       const [notification, setNotification] = useState(null);
       const [assignmentResult, setAssignmentResult] = useState(null);
+
+      // 교직원 대장 표: 상단 가로 스크롤바 <-> 표 본체 좌우 위치 동기화
+      const tableScrollRef = useRef(null);
+      const topScrollRef = useRef(null);
+      const [tableScrollWidth, setTableScrollWidth] = useState(0);
+
+      const syncFromTop = () => {
+        if (tableScrollRef.current && topScrollRef.current) {
+          tableScrollRef.current.scrollLeft = topScrollRef.current.scrollLeft;
+        }
+      };
+      const syncFromTable = () => {
+        if (tableScrollRef.current && topScrollRef.current) {
+          topScrollRef.current.scrollLeft = tableScrollRef.current.scrollLeft;
+        }
+      };
+
+      useEffect(() => {
+        const box = tableScrollRef.current;
+        if (!box) return;
+        const update = () => setTableScrollWidth(box.scrollWidth);
+        update();
+        let ro = null;
+        if (typeof ResizeObserver !== 'undefined') {
+          ro = new ResizeObserver(update);
+          ro.observe(box);
+          if (box.firstElementChild) ro.observe(box.firstElementChild);
+        }
+        window.addEventListener('resize', update);
+        return () => {
+          if (ro) ro.disconnect();
+          window.removeEventListener('resize', update);
+        };
+      }, [activeTab, teachers.length, departments.length, positions.length, specialtyTypes.length]);
 
       const assignmentResultGrades = useMemo(() => {
         if (!assignmentResult || !assignmentResult.homerooms) return [];
@@ -384,6 +464,7 @@
               if (data.positions) setPositions(data.positions);
               if (data.weights) setWeights(data.weights);
               if (data.difficultGrades) setDifficultGrades(data.difficultGrades);
+              if (data.prevDifficultGrades) setPrevDifficultGrades(data.prevDifficultGrades);
               if (data.algorithmOption) setAlgorithmOption(data.algorithmOption);
               if (data.assignmentResult) setAssignmentResult(data.assignmentResult);
               
@@ -409,14 +490,14 @@
         try {
           if (typeof window !== 'undefined' && window.localStorage) {
             const stateToSave = {
-              schoolName, schoolType, classCounts, teachers, departments, positions, weights, difficultGrades, algorithmOption, assignmentResult, homeroomCount, headCount, homeroomHeadCount, gradeHeadCount, specialtyCount, specialtyTypes, specialTeacherCount, supportTeacherCount, principalCount, vicePrincipalCount, deptCapacities
+              schoolName, schoolType, classCounts, teachers, departments, positions, weights, difficultGrades, prevDifficultGrades, algorithmOption, assignmentResult, homeroomCount, headCount, homeroomHeadCount, gradeHeadCount, specialtyCount, specialtyTypes, specialTeacherCount, supportTeacherCount, principalCount, vicePrincipalCount, deptCapacities
             };
             localStorage.setItem('teacher_matching_state_v5', JSON.stringify(stateToSave));
           }
         } catch(e) {
           console.error("로컬 스토리지 데이터 저장 오류", e);
         }
-      }, [schoolName, schoolType, classCounts, teachers, departments, positions, weights, difficultGrades, algorithmOption, assignmentResult, homeroomCount, headCount, homeroomHeadCount, gradeHeadCount, specialtyCount, specialtyTypes, specialTeacherCount, supportTeacherCount, principalCount, vicePrincipalCount, deptCapacities]);
+      }, [schoolName, schoolType, classCounts, teachers, departments, positions, weights, difficultGrades, prevDifficultGrades, algorithmOption, assignmentResult, homeroomCount, headCount, homeroomHeadCount, gradeHeadCount, specialtyCount, specialtyTypes, specialTeacherCount, supportTeacherCount, principalCount, vicePrincipalCount, deptCapacities]);
 
 
       useEffect(() => {
@@ -646,12 +727,12 @@
         const trimmed = newProfessionalTypeName.trim();
         if (!trimmed) return;
         if (specialtyTypes.includes(trimmed)) {
-          showToast('이미 존재하는 전문교사명입니다.', 'error');
+          showToast('이미 존재하는 특수·비교과교사명입니다.', 'error');
           return;
         }
         setSpecialtyTypes([...specialtyTypes, trimmed]);
         setNewProfessionalTypeName('');
-        showToast(`새 전문교사 [${trimmed}]이(가) 추가되었습니다.`, 'success');
+        showToast(`새 특수·비교과교사 [${trimmed}]이(가) 추가되었습니다.`, 'success');
       };
 
       const removeSpecialtyType = (type) => {
@@ -691,6 +772,8 @@
         setTeachers([...teachers, resolvedTeacher]);
         setNewTeacher({
           name: '',
+          gender: '',
+          prevGrade: 0,
           role: 'homeroom',
           specialtyType: specialtyTypes[0] || '',
           gradePrefs: [1, 2, 3, 4, 5],
@@ -816,6 +899,7 @@
           { id: 'p-8', name: '학년부장', dept: '학년부' }
         ]);
         setDifficultGrades([1, 6]);
+        setPrevDifficultGrades([1, 6]);
         setWeights(DEFAULT_WEIGHTS);
         setHomeroomCount(38);
         setHeadCount(4);
@@ -865,6 +949,8 @@
         const newT = {
           id: `t-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
           name: newAdminTeacher.name.trim(),
+          gender: normalizeGender(newAdminTeacher.gender),
+          prevGrade: 0,
           role: 'specialty',
           specialtyType: newAdminTeacher.title,
           fixedDept: '기타/없음',
@@ -880,7 +966,7 @@
         };
 
         setTeachers(prev => [...prev, newT]);
-        setNewAdminTeacher(prev => ({ ...prev, name: '', dept: '기타/없음' }));
+        setNewAdminTeacher(prev => ({ ...prev, name: '', gender: '', dept: '기타/없음' }));
         showToast(`${newAdminTeacher.title} ${newAdminTeacher.name} 선생님이 대장에 추가되었습니다.`, 'success');
       };
 
@@ -895,6 +981,8 @@
         const newT = {
           id: `t-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
           name: newOtherTeacher.name.trim(),
+          gender: normalizeGender(newOtherTeacher.gender),
+          prevGrade: 0,
           role: 'specialty',
           specialtyType: newOtherTeacher.title,
           fixedDept: chosenDept === '기타/없음' ? '기타/없음' : '',
@@ -912,7 +1000,7 @@
         };
 
         setTeachers(prev => [...prev, newT]);
-        setNewOtherTeacher(prev => ({ ...prev, name: '' }));
+        setNewOtherTeacher(prev => ({ ...prev, name: '', gender: '' }));
         showToast(`${newOtherTeacher.title} ${newOtherTeacher.name} 선생님이 대장에 추가되었습니다.`, 'success');
       };
 
@@ -986,9 +1074,18 @@
           const tenureTotal = parseInt(cols[17]) || 0;
           const tenureEtc = parseInt(cols[18]) || 0;
 
+          // 성별 (선택 항목, 20번째 열). 열이 없거나 인식 불가 값이면 '' (미지정)
+          const gender = normalizeGender(cols[19]);
+
+          // 전년도 담당 학년 (선택 항목, 21번째 열). 1~6 이외의 값은 0(없음)
+          const prevGradeRaw = parseInt(cols[20]);
+          const prevGrade = (prevGradeRaw >= 1 && prevGradeRaw <= 6) ? prevGradeRaw : 0;
+
           newTeachersList.push({
             id: `t-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
             name,
+            gender,
+            prevGrade,
             role,
             headPref,
             specialtyType,
@@ -1015,7 +1112,7 @@
       };
 
       const copyTemplateHeader = () => {
-        const header = "성명\t역할(담임/부장/전담교사/부장(담임)교사)\t보직명/세부직무\t1지망학년\t2지망학년\t3지망학년\t4지망학년\t5지망학년\t1지망부서\t2지망부서\t3지망부서\t4지망부서\t5지망부서\t본교경력\t담임경력\t곤란경력\t부장경력\t총경력\t기타가점";
+        const header = "성명\t역할(담임/부장/전담교사/부장(담임)교사)\t보직명/세부직무\t1지망학년\t2지망학년\t3지망학년\t4지망학년\t5지망학년\t1지망부서\t2지망부서\t3지망부서\t4지망부서\t5지망부서\t본교경력\t담임경력\t곤란경력\t부장경력\t총경력\t기타가점\t성별(남/여)\t전년도학년(1~6)";
         const el = document.createElement('textarea');
         el.value = header;
         document.body.appendChild(el);
@@ -1029,7 +1126,7 @@
       const exportSettings = () => {
         try {
           const stateToSave = {
-            schoolName, schoolType, classCounts, teachers, departments, positions, weights, difficultGrades, algorithmOption, assignmentResult, homeroomCount, headCount, homeroomHeadCount, gradeHeadCount, specialtyCount, specialtyTypes, specialTeacherCount, supportTeacherCount, principalCount, vicePrincipalCount, deptCapacities
+            schoolName, schoolType, classCounts, teachers, departments, positions, weights, difficultGrades, prevDifficultGrades, algorithmOption, assignmentResult, homeroomCount, headCount, homeroomHeadCount, gradeHeadCount, specialtyCount, specialtyTypes, specialTeacherCount, supportTeacherCount, principalCount, vicePrincipalCount, deptCapacities
           };
           const blob = new Blob([JSON.stringify(stateToSave, null, 2)], { type: 'application/json' });
           const url = URL.createObjectURL(blob);
@@ -1065,6 +1162,7 @@
             if (data.positions) setPositions(data.positions);
             if (data.weights) setWeights(data.weights);
             if (data.difficultGrades) setDifficultGrades(data.difficultGrades);
+            if (data.prevDifficultGrades) setPrevDifficultGrades(data.prevDifficultGrades);
             if (data.algorithmOption) setAlgorithmOption(data.algorithmOption);
             if (data.homeroomCount) setHomeroomCount(data.homeroomCount);
             if (data.headCount) setHeadCount(data.headCount);
@@ -1365,6 +1463,13 @@
               score += (parseInt(weights.difficultBonus) || 0);
             }
           }
+          // 전년도 곤란학년 담임자 보상 가산점 (배정 대상 학년과 무관하게 일괄 가산)
+          {
+            const pg = parseInt(teacher.prevGrade) || 0;
+            if (pg && prevDifficultGrades.includes(pg)) {
+              score += (parseInt(weights.prevDifficultBonus) || 0);
+            }
+          }
           score += (parseInt(teacher.tenureHead) || 0) * (parseInt(weights.tenureHead) || 0);
           score += (parseInt(teacher.tenureTotal) || 0) * (parseInt(weights.tenureTotal) || 0);
           score += (parseInt(teacher.tenureEtc) || 0) * (parseInt(weights.tenureEtc) || 0);
@@ -1407,6 +1512,11 @@
                 } else {
                   reason = `희망 학년 마감으로 인한 ${t.assignedGrade}학년 ${t.assignedClassNum}반 임의 배정 (경력 종합점수: ${careerScore}점)`;
                 }
+              }
+
+              const pgRef = parseInt(t.prevGrade) || 0;
+              if (pgRef && prevDifficultGrades.includes(pgRef)) {
+                reason += ` / 전년도 곤란학년(${pgRef}학년) 담임 가산점 +${parseInt(weights.prevDifficultBonus) || 0}점 반영`;
               }
             }
           } else {
@@ -1553,6 +1663,13 @@
               score += (parseInt(weights.difficultBonus) || 0);
             }
           }
+          // 전년도 곤란학년 담임자 보상 가산점 (희망 배제 모드에서도 동일 적용)
+          {
+            const pg = parseInt(teacher.prevGrade) || 0;
+            if (pg && prevDifficultGrades.includes(pg)) {
+              score += (parseInt(weights.prevDifficultBonus) || 0);
+            }
+          }
           
           score += (parseInt(teacher.tenureHead) || 0) * (parseInt(weights.tenureHead) || 0);
           score += (parseInt(teacher.tenureTotal) || 0) * (parseInt(weights.tenureTotal) || 0);
@@ -1664,7 +1781,7 @@
           }
         }
 
-        // Alg 1: Tenure-First (경력 종합점수 우선)
+        // Alg 1: Weighted-Score-First (종합 가중치 우선 — 지망 배점 + 경력 가중치 합산)
         const runScoreFirstMatching = () => {
           let remainingSlots = homeroomSlots.filter(s => !s.assignedTeacher);
           let assignedTeachersMap = {};
@@ -2288,6 +2405,10 @@
                     <Layers3 className="w-3.5 h-3.5 text-indigo-500" />
                     2027학년도 신학기 교무조직 설계 및 학급담임 매칭 엔진
                   </p>
+                  <p className="text-[11px] text-slate-400 mt-0.5 font-semibold flex items-center gap-1.5">
+                    <span className="inline-flex items-center bg-slate-100 text-slate-600 font-black px-1.5 py-0.5 rounded-md border border-slate-200">ver {APP_VERSION}</span>
+                    업데이트 {APP_UPDATED}
+                  </p>
                 </div>
               </div>
               
@@ -2323,6 +2444,16 @@
                   <Trash2 className="w-3.5 h-3.5 text-red-500" />
                   대장 초기화
                 </button>
+
+                <a
+                  href={encodeURI(HWP_FORM_FILE)}
+                  download={HWP_FORM_FILE}
+                  title="교직원 배부용 업무분장 희망원 한글(HWP) 서식을 내려받습니다"
+                  className="px-3.5 py-2 text-xs font-bold bg-violet-50 hover:bg-violet-100/80 border border-violet-200 text-violet-700 rounded-xl transition-all duration-200 flex items-center gap-1.5 active:scale-95 shadow-sm no-underline"
+                >
+                  <Download className="w-3.5 h-3.5 text-violet-500" />
+                  업무분장 희망원 한글서식
+                </a>
               </div>
             </div>
           </header>
@@ -2384,16 +2515,84 @@
 
               <div className="flex items-center gap-3 w-full sm:w-auto">
                 {/* Algorithm Selector */}
-                <div className="flex items-center gap-2 border border-slate-200 rounded-xl px-3 py-2 bg-slate-50">
+                <div className="relative flex items-center gap-2 border border-slate-200 rounded-xl px-3 py-2 bg-slate-50">
                   <span className="text-[10px] font-black text-slate-500 uppercase tracking-wider">알고리즘</span>
                   <select
                     value={algorithmOption}
                     onChange={(e) => setAlgorithmOption(e.target.value)}
                     className="text-xs font-bold bg-transparent text-slate-800 border-none outline-none cursor-pointer"
                   >
-                    <option value="scoreFirst">경력 종합점수 우선</option>
+                    <option value="scoreFirst">종합 가중치 우선 (희망＋경력)</option>
                     <option value="prefFirst">희망 순위(선호도) 우선</option>
                   </select>
+
+                  <button
+                    type="button"
+                    onClick={() => { if (algHelpOpen) { closeAlgHelp(); } else { setAlgHelpOpen(true); } }}
+                    title="두 방식의 차이 보기"
+                    aria-label="알고리즘 설명 보기"
+                    className={`w-5 h-5 shrink-0 rounded-full border text-[11px] font-black flex items-center justify-center transition ${
+                      algHelpOpen
+                        ? 'bg-indigo-600 border-indigo-600 text-white'
+                        : 'bg-white border-slate-300 text-slate-500 hover:border-indigo-400 hover:text-indigo-600'
+                    }`}
+                  >
+                    ?
+                  </button>
+
+                  {algHelpOpen && (
+                    <>
+                      {/* 바깥을 누르면 닫힘 */}
+                      <div className="fixed inset-0 z-40" onClick={closeAlgHelp}></div>
+
+                      <div className="absolute right-0 top-full mt-2.5 z-50 w-[360px] max-w-[calc(100vw-2rem)] text-left">
+                        {/* 말풍선 꼬리 */}
+                        <div className="absolute -top-1.5 right-4 w-3 h-3 rotate-45 bg-white border-l border-t border-slate-200"></div>
+
+                        <div className="bg-white border border-slate-200 rounded-2xl shadow-xl p-4 space-y-3 max-h-[calc(100vh-230px)] overflow-y-auto overscroll-contain">
+                          <div className="flex items-start justify-between gap-2 pb-2 border-b border-slate-100">
+                            <p className="text-xs font-black text-slate-800">어떤 방식으로 배정할까요?</p>
+                            <button
+                              type="button"
+                              onClick={closeAlgHelp}
+                              className="text-slate-400 hover:text-slate-700 font-black text-xs leading-none pt-0.5"
+                              aria-label="닫기"
+                            >
+                              ✕
+                            </button>
+                          </div>
+
+                          <div className="rounded-xl bg-indigo-50/60 border border-indigo-100 p-3">
+                            <p className="text-[11px] font-black text-indigo-800 mb-1.5">① 종합 가중치 우선 (희망＋경력)</p>
+                            <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
+                              선생님마다 학년별 <b>총점</b>을 매겨 높은 순서대로 자리를 채웁니다.<br />
+                              총점 = 지망 배점 + 경력 가중치 + 곤란학년 보너스<br />
+                              <span className="text-indigo-700 font-bold">「매칭 가중치 세부 조절」의 모든 항목이 그대로 반영됩니다.</span><br />
+                              경력이 많은 선생님이 희망 학년을 먼저 가져갑니다.
+                            </p>
+                            <p className="text-[10px] text-slate-500 mt-1.5 font-bold">▶ 경력·기여도를 배정에 반영하고 싶을 때</p>
+                          </div>
+
+                          <div className="rounded-xl bg-emerald-50/60 border border-emerald-100 p-3">
+                            <p className="text-[11px] font-black text-emerald-800 mb-1.5">② 희망 순위(선호도) 우선</p>
+                            <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
+                              1지망끼리 먼저 배정 → 남은 자리를 2지망끼리 → 3지망… 순서로 돌립니다.<br />
+                              같은 지망이 겹칠 때만 점수로 순서를 가리고, 이때는 <b>경력 가중치만</b> 사용합니다.<br />
+                              <span className="text-emerald-700 font-bold">지망 배점·곤란학년 보너스는 이 방식에서 쓰이지 않습니다.</span><br />
+                              1지망을 받는 선생님이 더 많아집니다.
+                            </p>
+                            <p className="text-[10px] text-slate-500 mt-1.5 font-bold">▶ 본인 희망을 최대한 존중하고 싶을 때</p>
+                          </div>
+
+                          <div className="text-[10px] text-slate-500 leading-relaxed font-semibold bg-slate-50 border border-slate-200/70 rounded-xl p-2.5 space-y-0.5">
+                            <p>• 학년부장 신청자는 두 방식 모두 <b>각 학년 1반에 먼저</b> 배정됩니다.</p>
+                            <p>• 부서(업무분장) 배정에는 가중치가 쓰이지 않습니다. 부서장은 부장경력 순, 부원은 지망 순서대로 정원을 채웁니다.</p>
+                            <p>• 방식을 바꾼 뒤 <b>다시 「배정하기」</b>를 눌러야 결과에 반영됩니다.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <button
@@ -2607,15 +2806,15 @@
                                 <span className="text-[10px] text-slate-400 font-bold">학년부장, 부장(담임)은 이 총원 안에 포함됩니다.</span>
                               </div>
                               
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                              <div className="grid grid-cols-1 gap-2">
                                 {/* 총 담임교사 수 */}
-                                <div className="bg-white p-3 rounded-xl border border-slate-200 flex flex-col items-center justify-between shadow-sm">
-                                  <span className="block text-[10px] text-slate-500 font-extrabold mb-2">총 담임교사 수</span>
-                                  <div className="flex items-center gap-1.5">
+                                <div className="bg-white px-3 py-2 rounded-xl border border-slate-200 flex items-center justify-between gap-2 shadow-sm">
+                                  <span className="text-[10px] text-slate-500 font-extrabold leading-tight min-w-0">총 담임교사 수</span>
+                                  <div className="flex items-center gap-1.5 shrink-0">
                                     <button
                                       type="button"
                                       onClick={() => setHomeroomCount(Math.max(0, (parseInt(homeroomCount) || 0) - 1))}
-                                      className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-200 text-slate-650 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
+                                      className="w-6 h-6 shrink-0 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
                                     >
                                       -
                                     </button>
@@ -2626,12 +2825,12 @@
                                       onChange={(e) => setHomeroomCount(e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value) || 0))}
                                       onFocus={(e) => e.target.select()}
                                       onClick={(e) => e.target.select()}
-                                      className="w-12 text-center text-xs font-black text-slate-800 bg-white border border-slate-300 rounded-lg py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                      className="w-12 shrink-0 text-center text-xs font-black text-slate-800 bg-white border border-slate-300 rounded-lg py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                     />
                                     <button
                                       type="button"
                                       onClick={() => setHomeroomCount((parseInt(homeroomCount) || 0) + 1)}
-                                      className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-200 text-slate-650 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
+                                      className="w-6 h-6 shrink-0 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
                                     >
                                       +
                                     </button>
@@ -2639,13 +2838,13 @@
                                 </div>
 
                                 {/* 학년부장 수 */}
-                                <div className="bg-white p-3 rounded-xl border border-slate-200 flex flex-col items-center justify-between shadow-sm">
-                                  <span className="block text-[10px] text-slate-500 font-extrabold mb-2">학년부장 수</span>
-                                  <div className="flex items-center gap-1.5">
+                                <div className="bg-white px-3 py-2 rounded-xl border border-slate-200 flex items-center justify-between gap-2 shadow-sm">
+                                  <span className="text-[10px] text-slate-500 font-extrabold leading-tight min-w-0">학년부장 수</span>
+                                  <div className="flex items-center gap-1.5 shrink-0">
                                     <button
                                       type="button"
                                       onClick={() => setGradeHeadCount(Math.max(0, (parseInt(gradeHeadCount) || 0) - 1))}
-                                      className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-200 text-slate-655 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
+                                      className="w-6 h-6 shrink-0 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
                                     >
                                       -
                                     </button>
@@ -2656,12 +2855,12 @@
                                       onChange={(e) => setGradeHeadCount(e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value) || 0))}
                                       onFocus={(e) => e.target.select()}
                                       onClick={(e) => e.target.select()}
-                                      className="w-12 text-center text-xs font-black text-slate-800 bg-white border border-slate-300 rounded-lg py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                      className="w-12 shrink-0 text-center text-xs font-black text-slate-800 bg-white border border-slate-300 rounded-lg py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                     />
                                     <button
                                       type="button"
                                       onClick={() => setGradeHeadCount((parseInt(gradeHeadCount) || 0) + 1)}
-                                      className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-200 text-slate-655 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
+                                      className="w-6 h-6 shrink-0 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
                                     >
                                       +
                                     </button>
@@ -2669,13 +2868,13 @@
                                 </div>
 
                                 {/* 부장(담임)교사 수 */}
-                                <div className="bg-white p-3 rounded-xl border border-slate-200 flex flex-col items-center justify-between shadow-sm">
-                                  <span className="block text-[10px] text-slate-500 font-extrabold mb-2">부장(담임)교사 수</span>
-                                  <div className="flex items-center gap-1.5">
+                                <div className="bg-white px-3 py-2 rounded-xl border border-slate-200 flex items-center justify-between gap-2 shadow-sm">
+                                  <span className="text-[10px] text-slate-500 font-extrabold leading-tight min-w-0">부장(담임)교사 수</span>
+                                  <div className="flex items-center gap-1.5 shrink-0">
                                     <button
                                       type="button"
                                       onClick={() => setHomeroomHeadCount(Math.max(0, (parseInt(homeroomHeadCount) || 0) - 1))}
-                                      className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-200 text-slate-655 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
+                                      className="w-6 h-6 shrink-0 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
                                     >
                                       -
                                     </button>
@@ -2686,12 +2885,12 @@
                                       onChange={(e) => setHomeroomHeadCount(e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value) || 0))}
                                       onFocus={(e) => e.target.select()}
                                       onClick={(e) => e.target.select()}
-                                      className="w-12 text-center text-xs font-black text-slate-800 bg-white border border-slate-300 rounded-lg py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                      className="w-12 shrink-0 text-center text-xs font-black text-slate-800 bg-white border border-slate-300 rounded-lg py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                     />
                                     <button
                                       type="button"
                                       onClick={() => setHomeroomHeadCount((parseInt(homeroomHeadCount) || 0) + 1)}
-                                      className="w-6 h-6 rounded-lg bg-slate-50 border border-slate-200 text-slate-655 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
+                                      className="w-6 h-6 shrink-0 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100 flex items-center justify-center font-black text-xs transition active:scale-90 shadow-sm"
                                     >
                                       +
                                     </button>
@@ -2827,10 +3026,10 @@
                               </div>
                             </div>
 
-                            {/* 기타 전문 및 특수교사 배지 현황 */}
+                            {/* 특수·비교과교사 배지 현황 */}
                             <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200/80 shadow-sm space-y-2">
                               <div className="flex justify-between items-center pb-1 border-b border-slate-200/60">
-                                <span className="text-[10px] font-black text-slate-500">기타 전문/특수교사 현황 (등록 기준)</span>
+                                <span className="text-[10px] font-black text-slate-500">특수·비교과교사 현황 (등록 기준)</span>
                               </div>
                               <div className="flex flex-wrap gap-1.5 pt-1">
                                 {(() => {
@@ -3143,12 +3342,12 @@
                     <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-violet-500 to-indigo-500"></div>
                     <h3 className="text-base font-black text-slate-800 mb-5 pb-3 border-b border-slate-100 flex items-center gap-2.5">
                       <span className="p-1.5 rounded-lg bg-violet-50 text-violet-600"><UserCheck className="w-4 h-4" /></span>
-                      4. 전문교사 관리(특수교사, 보건교사, 상담교사, 영양교사, 사서교사)
+                      4. 특수·비교과교사 관리(특수교사, 보건교사, 상담교사, 영양교사, 사서교사)
                     </h3>
                     
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-black text-slate-700">전문교사 목록</span>
+                        <span className="text-xs font-black text-slate-700">특수·비교과교사 목록</span>
                         <span className="text-[10px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full">
                           {specialtyTypes.filter(type => PROFESSIONAL_TEACHER_TYPES.includes(type)).length}개
                         </span>
@@ -3165,14 +3364,14 @@
                             </span>
                           ))
                         ) : (
-                          <span className="text-[11px] text-slate-400 italic font-medium p-1">등록된 전문교사 종류가 없습니다. 새 항목을 추가해주세요.</span>
+                          <span className="text-[11px] text-slate-400 italic font-medium p-1">등록된 특수·비교과교사 종류가 없습니다. 새 항목을 추가해주세요.</span>
                         )}
                       </div>
 
                       <div className="flex gap-2">
                         <input
                           type="text"
-                          placeholder="새 전문교사명"
+                          placeholder="새 특수·비교과교사명"
                           value={newProfessionalTypeName}
                           onChange={(e) => setNewProfessionalTypeName(e.target.value)}
                           onKeyDown={(e) => {
@@ -3217,7 +3416,8 @@
                         { label: '부장 보직 경력 (연도당)', key: 'tenureHead' },
                         { label: '교직 총경력 배점 (연도당)', key: 'tenureTotal' },
                         { label: '기타 가점 가중치', key: 'tenureEtc' },
-                        { label: '곤란학년 희망 보너스', key: 'difficultBonus' }
+                        { label: '곤란학년 희망 보너스 (금년)', key: 'difficultBonus' },
+                        { label: '전년도 곤란학년 담임 가산점', key: 'prevDifficultBonus' }
                       ].map((item) => {
                         const maxLimit = ['pref1', 'pref2', 'pref3', 'pref4', 'pref5'].includes(item.key) ? 50 : 10;
                         return (
@@ -3256,34 +3456,72 @@
                         );
                       })}
 
-                      {/* Difficult Grades Setting */}
-                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/50 mt-4 shadow-inner">
-                        <span className="block text-[11px] font-bold text-slate-600 mb-2">곤란 학년 설정</span>
-                        <div className="flex flex-wrap gap-2.5">
-                          {[1, 2, 3, 4, 5, 6].map((grade) => {
-                            const isDiff = difficultGrades.includes(grade);
-                            return (
-                              <label key={grade} className={`flex items-center gap-1.5 text-xs font-bold px-2.5 py-1.5 rounded-lg cursor-pointer select-none border transition ${
-                                isDiff 
-                                  ? 'bg-rose-50 border-rose-200 text-rose-700' 
-                                  : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
-                              }`}>
-                                <input
-                                  type="checkbox"
-                                  checked={isDiff}
-                                  onChange={() => {
-                                    if (isDiff) {
-                                      setDifficultGrades(difficultGrades.filter(g => g !== grade));
-                                    } else {
-                                      setDifficultGrades([...difficultGrades, grade]);
-                                    }
-                                  }}
-                                  className="rounded text-rose-600 w-4 h-4 focus:ring-rose-500/20 border-slate-300"
-                                />
-                                {grade}학년
-                              </label>
-                            );
-                          })}
+                      {/* Difficult Grades Setting - 금년 / 전년도 */}
+                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/50 mt-4 shadow-inner space-y-3">
+                        <div>
+                          <span className="block text-[11px] font-bold text-rose-700 mb-2">금년 곤란학년 설정</span>
+                          <div className="flex flex-wrap gap-2.5">
+                            {[1, 2, 3, 4, 5, 6].map((grade) => {
+                              const isDiff = difficultGrades.includes(grade);
+                              return (
+                                <label key={grade} className={`flex items-center gap-1.5 text-xs font-bold px-2.5 py-1.5 rounded-lg cursor-pointer select-none border transition ${
+                                  isDiff
+                                    ? 'bg-rose-50 border-rose-200 text-rose-700'
+                                    : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                                }`}>
+                                  <input
+                                    type="checkbox"
+                                    checked={isDiff}
+                                    onChange={() => {
+                                      if (isDiff) {
+                                        setDifficultGrades(difficultGrades.filter(g => g !== grade));
+                                      } else {
+                                        setDifficultGrades([...difficultGrades, grade]);
+                                      }
+                                    }}
+                                    className="rounded text-rose-600 w-4 h-4 focus:ring-rose-500/20 border-slate-300"
+                                  />
+                                  {grade}학년
+                                </label>
+                              );
+                            })}
+                          </div>
+                          <p className="text-[10px] text-slate-400 font-semibold mt-1.5 leading-relaxed">
+                            선택한 학년에 배정될 때 곤란학년 경력 가중치와 희망 보너스가 적용됩니다.
+                          </p>
+                        </div>
+
+                        <div className="pt-3 border-t border-slate-200/70">
+                          <span className="block text-[11px] font-bold text-amber-700 mb-2">전년도 곤란학년 설정</span>
+                          <div className="flex flex-wrap gap-2.5">
+                            {[1, 2, 3, 4, 5, 6].map((grade) => {
+                              const isPrev = prevDifficultGrades.includes(grade);
+                              return (
+                                <label key={grade} className={`flex items-center gap-1.5 text-xs font-bold px-2.5 py-1.5 rounded-lg cursor-pointer select-none border transition ${
+                                  isPrev
+                                    ? 'bg-amber-50 border-amber-200 text-amber-700'
+                                    : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                                }`}>
+                                  <input
+                                    type="checkbox"
+                                    checked={isPrev}
+                                    onChange={() => {
+                                      if (isPrev) {
+                                        setPrevDifficultGrades(prevDifficultGrades.filter(g => g !== grade));
+                                      } else {
+                                        setPrevDifficultGrades([...prevDifficultGrades, grade]);
+                                      }
+                                    }}
+                                    className="rounded text-amber-600 w-4 h-4 focus:ring-amber-500/20 border-slate-300"
+                                  />
+                                  {grade}학년
+                                </label>
+                              );
+                            })}
+                          </div>
+                          <p className="text-[10px] text-slate-400 font-semibold mt-1.5 leading-relaxed">
+                            대장의 '전년도 학년'이 여기 해당하는 교사에게 금년 배정 시 가산점을 줍니다.
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -3327,40 +3565,91 @@
                       </div>
                     </div>
 
+                    {/* 상단 가로 스크롤바 - 세로 스크롤을 내리지 않아도 좌우 이동 가능 */}
+                    <div
+                      ref={topScrollRef}
+                      onScroll={syncFromTop}
+                      className="h-scrollbar overflow-x-auto overflow-y-hidden border border-slate-200 border-b-0 rounded-t-2xl bg-slate-100/70"
+                      style={{ height: '14px' }}
+                      aria-hidden="true"
+                    >
+                      <div style={{ width: tableScrollWidth ? tableScrollWidth + 'px' : '100%', height: '1px' }}></div>
+                    </div>
+
                     {/* Teacher Table */}
-                    <div className="overflow-x-auto border border-slate-200 rounded-2xl shadow-inner bg-slate-50/50">
+                    <div
+                      ref={tableScrollRef}
+                      onScroll={syncFromTable}
+                      className="overflow-auto max-h-[max(620px,calc(100vh-348px))] min-h-[260px] overscroll-contain border border-slate-200 rounded-b-2xl shadow-inner bg-slate-50/50"
+                    >
                       <table className="w-full text-left border-collapse text-xs min-w-[1000px]">
                         <thead>
                           <tr className="bg-slate-100/80 border-b border-slate-200 text-slate-600 font-bold text-[11px]">
-                            <th className="p-2 w-8 text-center">번호</th>
-                            <th className="p-2 w-12">성명</th>
-                            <th className="p-2 w-24">직책 희망</th>
-                            <th className="p-2 w-28 min-w-[110px]">부장 희망</th>
-                            <th className="p-2 w-28 min-w-[110px]">전담 희망</th>
-                            <th className="p-2 w-[172px]">학년 희망 (1~5지망)</th>
-                            <th className="p-2 w-[272px]">부서 희망 (1~5지망)</th>
-                            <th className="p-2 w-[230px]">경력 및 가점</th>
-                            <th className="p-2 text-center w-10">삭제</th>
+                            <th className="sticky top-0 left-0 z-40 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 w-11 min-w-[44px] max-w-[44px] text-center">번호</th>
+                            <th className="sticky top-0 left-[44px] z-40 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0,inset_-1px_0_0_0_#e2e8f0] px-2 py-1.5 w-20 min-w-[80px] max-w-[80px]">성명</th>
+                            <th className="sticky top-0 z-20 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 w-12 text-center">성별</th>
+                            <th className="sticky top-0 z-20 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 w-[74px] whitespace-nowrap text-center">전년도 학년</th>
+                            <th className="sticky top-0 z-20 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 w-24">직책 희망</th>
+                            <th className="sticky top-0 z-20 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 w-28 min-w-[110px]">부장 희망</th>
+                            <th className="sticky top-0 z-20 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 w-28 min-w-[110px]">전담 희망</th>
+                            <th className="sticky top-0 z-20 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 w-[172px]">학년 희망 (1~5지망)</th>
+                            <th className="sticky top-0 z-20 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 w-[272px]">부서 희망 (1~5지망)</th>
+                            <th className="sticky top-0 z-20 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 w-[230px]">경력 및 가점</th>
+                            <th className="sticky top-0 z-20 bg-slate-100 shadow-[inset_0_-1px_0_0_#e2e8f0] px-2 py-1.5 text-center w-10">삭제</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100 bg-white">
                           {filteredTeachers.map((t, idx) => (
                             <tr key={t.id} className="hover:bg-slate-50/50 transition duration-150">
                               {/* Index */}
-                              <td className="p-2 text-center text-slate-400 font-bold">{idx + 1}</td>
+                              <td className="sticky left-0 z-10 bg-white px-2 py-1 w-11 min-w-[44px] max-w-[44px] text-center text-slate-400 font-bold">{idx + 1}</td>
                               {/* Name */}
-                              <td className="p-2 font-bold text-slate-900">
+                              <td className="sticky left-[44px] z-10 bg-white shadow-[inset_-1px_0_0_0_#e2e8f0] px-2 py-1 w-20 min-w-[80px] max-w-[80px] font-bold text-slate-900">
                                 <input
                                   type="text"
                                   value={t.name}
                                   onChange={(e) => handleUpdateTeacherField(t.id, 'name', e.target.value)}
                                   onFocus={(e) => e.target.select()}
-                                  className="w-12 border-b border-transparent hover:border-slate-300 focus:border-indigo-500 focus:outline-none font-bold py-0.5"
+                                  className="w-full border-b border-transparent hover:border-slate-300 focus:border-indigo-500 focus:outline-none font-bold py-0.5 bg-transparent"
                                 />
                               </td>
-                              
+
+                              {/* Gender */}
+                              <td className="px-2 py-1 text-center">
+                                <select
+                                  value={t.gender || ''}
+                                  onChange={(e) => handleUpdateTeacherField(t.id, 'gender', e.target.value)}
+                                  className="w-12 border border-slate-200 rounded px-1 py-0.5 bg-white font-semibold text-slate-700 focus:ring-1 focus:ring-indigo-500 focus:outline-none text-[11px]"
+                                >
+                                  <option value="">-</option>
+                                  <option value="남">남</option>
+                                  <option value="여">여</option>
+                                </select>
+                              </td>
+
+                              {/* 전년도 담당 학년 */}
+                              <td className="px-2 py-1 text-center">
+                                <select
+                                  value={t.prevGrade || 0}
+                                  onChange={(e) => handleUpdateTeacherField(t.id, 'prevGrade', parseInt(e.target.value) || 0)}
+                                  className={`w-14 border rounded px-1 py-0.5 font-semibold focus:ring-1 focus:ring-indigo-500 focus:outline-none text-[11px] ${
+                                    (t.prevGrade && prevDifficultGrades.includes(parseInt(t.prevGrade)))
+                                      ? 'bg-amber-50 border-amber-300 text-amber-800'
+                                      : 'bg-white border-slate-200 text-slate-700'
+                                  }`}
+                                >
+                                  <option value="0">-</option>
+                                  <option value="1">1학년</option>
+                                  <option value="2">2학년</option>
+                                  <option value="3">3학년</option>
+                                  <option value="4">4학년</option>
+                                  <option value="5">5학년</option>
+                                  <option value="6">6학년</option>
+                                </select>
+                              </td>
+
                               {/* Role */}
-                              <td className="p-2">
+                              <td className="px-2 py-1">
                                 {(t.specialtyType === '교장' || t.specialtyType === '교감') ? (
                                   <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-black bg-indigo-50 text-indigo-700 border border-indigo-200/60 shadow-sm">
                                     관리직
@@ -3386,13 +3675,13 @@
                                     <option value="head">부장(전담)교사</option>
                                     <option value="homeroom_head">부장(담임)교사</option>
                                     <option value="specialty">전담교사</option>
-                                    <option value="professional">전문교사</option>
+                                    <option value="professional">특수·비교과교사</option>
                                   </select>
                                 )}
                               </td>
 
                               {/* Head Position Pref */}
-                              <td className="p-2 w-28 min-w-[110px]">
+                              <td className="px-2 py-1 w-28 min-w-[110px]">
                                 {(t.specialtyType === '교장' || t.specialtyType === '교감' || (t.role === 'specialty' && PROFESSIONAL_TEACHER_TYPES.includes(t.specialtyType))) ? (
                                   <span className="text-slate-400 font-medium italic">-</span>
                                 ) : (t.role === 'head' || t.role === 'homeroom_head') ? (
@@ -3413,7 +3702,7 @@
                               </td>
 
                               {/* Specialty Pref */}
-                              <td className="p-2 w-28 min-w-[110px]">
+                              <td className="px-2 py-1 w-28 min-w-[110px]">
                                 {(t.specialtyType === '교장' || t.specialtyType === '교감') ? (
                                   <select
                                     value={t.specialtyType}
@@ -3450,7 +3739,7 @@
                               </td>
 
                               {/* Grade Prefs */}
-                              <td className="p-2">
+                              <td className="px-2 py-1">
                                 {t.fixedDept ? (
                                   <span className="text-slate-400 font-medium italic">-</span>
                                 ) : (
@@ -3476,7 +3765,7 @@
                               </td>
 
                               {/* Dept Prefs */}
-                              <td className="p-2">
+                              <td className="px-2 py-1">
                                 {(t.specialtyType === '교장' || t.specialtyType === '교감') ? (
                                   <span className="text-slate-400 font-medium italic">기타/없음</span>
                                 ) : t.fixedDept === '기타/없음' ? (
@@ -3536,7 +3825,7 @@
                               </td>
 
                               {/* Tenure fields grid */}
-                              <td className="p-2">
+                              <td className="px-2 py-1">
                                 <div className="flex items-center gap-0.5">
                                   {[
                                     { name: '본교', key: 'tenureSchool' },
@@ -3546,7 +3835,7 @@
                                     { name: '총년', key: 'tenureTotal' },
                                     { name: '기타', key: 'tenureEtc' }
                                   ].map((ten) => (
-                                    <div key={ten.key} className="flex flex-col items-center bg-slate-50 border border-slate-200/50 rounded-lg p-0.5">
+                                    <div key={ten.key} className="flex flex-col items-center bg-slate-50 border border-slate-200/50 rounded-md px-1 leading-none">
                                       <span className="text-[8px] text-slate-455 font-black scale-90">{ten.name}</span>
                                       <input 
                                         type="number" 
@@ -3563,10 +3852,10 @@
                               </td>
 
                               {/* Delete button */}
-                              <td className="p-2 text-center">
+                              <td className="px-2 py-1 text-center">
                                 <button
                                   onClick={() => handleRemoveTeacher(t.id)}
-                                  className="px-2 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg border border-rose-200 transition active:scale-95 flex items-center gap-1 mx-auto font-black text-[11px]"
+                                  className="px-2 py-1 whitespace-nowrap bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg border border-rose-200 transition active:scale-95 flex items-center gap-1 mx-auto font-black text-[11px]"
                                   title="교사 삭제"
                                 >
                                   <Trash2 className="w-3.5 h-3.5" />
@@ -3606,6 +3895,36 @@
                                     onChange={(e) => setNewTeacher(prev => ({ ...prev, name: e.target.value }))}
                                     className="w-full px-3.5 py-2.5 text-xs border border-slate-300 rounded-xl bg-white font-bold focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 focus:outline-none transition-all duration-150"
                                   />
+                                </div>
+
+                                <div>
+                                  <label className="block text-[11px] text-slate-500 font-bold mb-1.5 uppercase tracking-wider">성별</label>
+                                  <select
+                                    value={newTeacher.gender}
+                                    onChange={(e) => setNewTeacher(prev => ({ ...prev, gender: e.target.value }))}
+                                    className="w-full px-3.5 py-2.5 text-xs border border-slate-300 rounded-xl bg-white font-bold text-slate-700 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 focus:outline-none transition-all duration-150"
+                                  >
+                                    <option value="">미지정</option>
+                                    <option value="남">남</option>
+                                    <option value="여">여</option>
+                                  </select>
+                                </div>
+
+                                <div>
+                                  <label className="block text-[11px] text-slate-500 font-bold mb-1.5 uppercase tracking-wider">전년도 담당 학년</label>
+                                  <select
+                                    value={newTeacher.prevGrade}
+                                    onChange={(e) => setNewTeacher(prev => ({ ...prev, prevGrade: parseInt(e.target.value) || 0 }))}
+                                    className="w-full px-3.5 py-2.5 text-xs border border-slate-300 rounded-xl bg-white font-bold text-slate-700 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 focus:outline-none transition-all duration-150"
+                                  >
+                                    <option value="0">없음 / 미입력</option>
+                                    <option value="1">1학년</option>
+                                    <option value="2">2학년</option>
+                                    <option value="3">3학년</option>
+                                    <option value="4">4학년</option>
+                                    <option value="5">5학년</option>
+                                    <option value="6">6학년</option>
+                                  </select>
                                 </div>
                                 
                                 <div>
@@ -3690,6 +4009,19 @@
                                     className="w-full px-3.5 py-2.5 text-xs border border-slate-300 rounded-xl bg-white font-bold focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 focus:outline-none transition-all duration-150"
                                   />
                                 </div>
+
+                                <div>
+                                  <label className="block text-[11px] text-slate-500 font-bold mb-1.5 uppercase tracking-wider">성별</label>
+                                  <select
+                                    value={newAdminTeacher.gender}
+                                    onChange={(e) => setNewAdminTeacher(prev => ({ ...prev, gender: e.target.value }))}
+                                    className="w-full px-3.5 py-2.5 text-xs border border-slate-300 rounded-xl bg-white font-bold text-slate-700 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 focus:outline-none transition-all duration-150"
+                                  >
+                                    <option value="">미지정</option>
+                                    <option value="남">남</option>
+                                    <option value="여">여</option>
+                                  </select>
+                                </div>
                                 
                                 <div>
                                   <label className="block text-[11px] text-slate-500 font-bold mb-1.5 uppercase tracking-wider">직책</label>
@@ -3716,12 +4048,12 @@
                           </div>
                         </div>
 
-                        {/* 전문교사 등록 */}
+                        {/* 특수·비교과교사 등록 */}
                         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-premium transition-all duration-300">
                           <div>
                             <h4 className="text-xs font-black text-slate-800 mb-5 flex items-center gap-2 pb-2 border-b border-slate-100">
                               <span className="w-2 h-2 bg-violet-500 rounded-full"></span>
-                              전문교사 등록
+                              특수·비교과교사 등록
                             </h4>
                             <form onSubmit={handleAddOtherTeacher} className="space-y-4.5">
                               <div className="space-y-4">
@@ -3734,6 +4066,19 @@
                                     onChange={(e) => setNewOtherTeacher(prev => ({ ...prev, name: e.target.value }))}
                                     className="w-full px-3.5 py-2.5 text-xs border border-slate-300 rounded-xl bg-white font-bold focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 focus:outline-none transition-all duration-150"
                                   />
+                                </div>
+
+                                <div>
+                                  <label className="block text-[11px] text-slate-500 font-bold mb-1.5 uppercase tracking-wider">성별</label>
+                                  <select
+                                    value={newOtherTeacher.gender}
+                                    onChange={(e) => setNewOtherTeacher(prev => ({ ...prev, gender: e.target.value }))}
+                                    className="w-full px-3.5 py-2.5 text-xs border border-slate-300 rounded-xl bg-white font-bold text-slate-700 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 focus:outline-none transition-all duration-150"
+                                  >
+                                    <option value="">미지정</option>
+                                    <option value="남">남</option>
+                                    <option value="여">여</option>
+                                  </select>
                                 </div>
                                 
                                 <div>
@@ -3771,7 +4116,7 @@
                                   type="submit"
                                   className="w-full px-4 py-3 bg-violet-600 hover:bg-violet-700 text-white text-xs font-black rounded-xl active:scale-95 transition-all duration-150 flex items-center justify-center gap-1.5 shadow-sm border border-violet-500/15"
                                 >
-                                  <Plus className="w-4 h-4" /> 전문교사 등록 추가
+                                  <Plus className="w-4 h-4" /> 특수·비교과교사 등록 추가
                                 </button>
                               </div>
                             </form>
@@ -4509,7 +4854,7 @@
                   
                   <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 text-[10px] text-slate-500 leading-relaxed font-mono">
                     <span className="font-bold text-indigo-600">[헤더 순서안내]</span><br/>
-                    성명 | 역할(담임/부장/전담교사/부장(담임)교사) | 직무명 | 1~5지망학년(5열) | 1~5지망부서(5열) | 본교경력 | 담임경력 | 곤란경력 | 부장경력 | 총경력 | 기타가점
+                    성명 | 역할(담임/부장/전담교사/부장(담임)교사) | 직무명 | 1~5지망학년(5열) | 1~5지망부서(5열) | 본교경력 | 담임경력 | 곤란경력 | 부장경력 | 총경력 | 기타가점 | 성별(남/여, 선택) | 전년도학년(1~6, 선택)
                   </div>
 
                   <textarea
